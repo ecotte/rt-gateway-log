@@ -1,0 +1,16 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+Data/
+data/
+state.json
+Config.json
+./state.json
+configs/
+Configs/
+logs/
+examples/
+PowerShell Script/configs/
+PowerShell Script/Configs/
+PowerShell Script/logs/
+PowerShell Script/examples/
+on-premises data gateway installer/conf_uid
