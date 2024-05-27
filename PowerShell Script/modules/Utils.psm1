@@ -246,16 +246,11 @@ function Add-LogToEventHub {
 
     # create Request Body
     $csv = Import-Csv -Path $logPath 
-
     $csvMaxIndex = $csv.Count - 1
-
     $continue = $true
     $correctSize = $true
-
-    $chunckSize = 2000
- 
+    $chunckSize = 2000 
     $minIndex = 0
-
     $maxIndex = $minIndex + $chunckSize - 1
     
     do {
@@ -265,10 +260,15 @@ function Add-LogToEventHub {
             $continue = $false
         }
 
-        do{
-            $correctSize = $true
+        do{            
 
+            $dif = ($maxIndex-$minIndex)
             $currentPart = $csv | Select-Object -Index ($minIndex..$maxIndex)
+
+            if ($dif -eq 0 -and $correctSize -eq $false -and $logType -eq "QueryStartReport")
+            {
+                $currentPart.QueryText = "QueryText too large!"
+            }
 
             $body = @{
                 logType = $logType
@@ -279,10 +279,11 @@ function Add-LogToEventHub {
             $jsonSize = [Text.Encoding]::UTF8.GetByteCount($body)/1024
 
             if ($jsonSize -ge 980) {
-                $dif = ($maxIndex-$minIndex)
-                $maxIndex = $minIndex + [math]::ceiling( $dif / 2)
+                $maxIndex = $minIndex + [math]::floor( $dif / 2)
                 $correctSize = $false
                 $continue = $true
+            } else {
+                $correctSize = $true
             }
 
         } while (-Not $correctSize) 

@@ -7,8 +7,6 @@ function ProcessLogFiles {
         $storagePath, 
         [datetime]
         $executionDate, 
-        [string]
-        $tempPath,
         [psobject]
         $eventHubs,
         [psobject]
@@ -26,78 +24,68 @@ function ProcessLogFiles {
     foreach ($logFile in $logFiles) {
                 
         $storagePathTemp = $storagePath
-        $fileReady = $true
-        
-        if ($tempPath) {
+        $fileReady = $true        
 
-            Write-Host "Processing file: '$($logFile.FullName)'"            
-            $fileOutputPath = ""     
+        Write-Host "Processing file: '$($logFile.FullName)'"            
+        $fileOutputPath = ""     
             
-            if ($isReport) {
-                # Try to parse the report name of the file name
-                $reportName = $logFile.Name -split "_" | Select-Object -first 1
+        if ($isReport) {
+            # Try to parse the report name of the file name
+            $reportName = $logFile.Name -split "_" | Select-Object -first 1
 
-                $storagePathTemp = ("$storagePath/$reportName/{0:yyyy}/{0:MM}/{0:dd}/" -f $executionDate)
+            $storagePathTemp = ("$storagePath/$reportName/{0:yyyy}/{0:MM}/{0:dd}/" -f $executionDate)
                 
-                if ((Split-Path $logFile.DirectoryName -Leaf) -ne "Temp") {                   
-                    $fileOutputPath = "$($logFile.DirectoryName)\Temp\$($logFile.Name -replace ".log",("_{0:HH}{0:mm}{0:ss}_x.log" -f $executionDate))"     
-                    New-Item -Path (Split-Path $fileOutputPath -Parent) -ItemType Directory -Force -ErrorAction SilentlyContinue | Out-Null
-                } else {
-                    $fileOutputPath = "$($logFile.DirectoryName)\$($logFile.Name)"     
-                }
-
-                # Local Move the file with retry in case of locked
-                Write-Host "Copy/Moving file: '$($logFile.FullName)' to '$fileOutputPath'"
-                
-                $Stoploop = $false
-                [int]$Retrycount = 0
-
-
-
-                do {
-                    try {
-                        # Try to parse the date out of the file name
-                        $logFile = Move-Item -Path $logFile.FullName -Destination $fileOutputPath -Force -PassThru
-                        $fileOutputPath = $logFile.FullName
-                        Write-Host "Job completed"
-                        $Stoploop = $true
-                    }
-                    catch {
-                        if ($Retrycount -gt 0) {
-                            Write-Host "Could not move the file after $Retrycount retrys."
-                            Write-Host "Canceling $logFile.Name"
-                            $Stoploop = $true
-                            $fileReady = $false
-                        }
-                        else {
-                            Write-Host "Could not move the file retrying..."
-                            $Retrycount = $Retrycount + 1
-                        }
-                    }
-                }
-                While ($Stoploop -eq $false)
+            if ((Split-Path $logFile.DirectoryName -Leaf) -ne "Temp") {                   
+                $fileOutputPath = "$($logFile.DirectoryName)\Temp\$($logFile.Name -replace ".log",("_{0:HH}{0:mm}{0:ss}_x.log" -f $executionDate))"     
+                New-Item -Path (Split-Path $fileOutputPath -Parent) -ItemType Directory -Force -ErrorAction SilentlyContinue | Out-Null
             }
             else {
-
-                $FilePattern = $logFile.Name | Select-String -Pattern "([a-zA-Z]+)(\d{4})(\d{2})(\d{2})"
-                
-                if ($FilePattern -and ($FilePattern.Matches[0].Groups.Count -ge 5)) {
-                    $FileType = $FilePattern.Matches[0].Groups[1].Value
-                    $FileYear = $FilePattern.Matches[0].Groups[2].Value
-                    $FileMonth = $FilePattern.Matches[0].Groups[3].Value
-                    $FileDay = $FilePattern.Matches[0].Groups[4].Value
-                    $storagePathTemp = ("$storagePath/$FileType/$FileYear/$FileMonth/$FileDay/")
-                }
-                else {
-                    $storagePathTemp = ("$storagePath/OtherLogs/{0:yyyy}/{0:MM}/{0:dd}/" -f $executionDate)
-                }
-                $fileOutputPath = "$tempPath\$($storagePathTemp.Replace("/", "\"))$($logFile.Name)"   
-                New-Item -ItemType Directory -Path (Split-Path $fileOutputPath -Parent) -ErrorAction SilentlyContinue | Out-Null
-                Copy-Item -Path $logFile.FullName -Destination $fileOutputPath -Force
-                Write-Host "Job completed"
+                $fileOutputPath = "$($logFile.DirectoryName)\$($logFile.Name)"     
             }
+
+            # Local Move the file with retry in case of locked
+            Write-Host "Copy/Moving file: '$($logFile.FullName)' to '$fileOutputPath'"
+                
+            $Stoploop = $false
+            [int]$Retrycount = 0
+
+            do {
+                try {
+                    # Try to parse the date out of the file name
+                    $logFile = Move-Item -Path $logFile.FullName -Destination $fileOutputPath -Force -PassThru
+                    $fileOutputPath = $logFile.FullName
+                    Write-Host "Job completed"
+                    $Stoploop = $true
+                }
+                catch {
+                    if ($Retrycount -gt 0) {
+                        Write-Host "Could not move the file after $Retrycount retrys."
+                        Write-Host "Canceling $logFile.Name"
+                        $Stoploop = $true
+                        $fileReady = $false
+                    }
+                    else {
+                        Write-Host "Could not move the file retrying..."
+                        $Retrycount = $Retrycount + 1
+                    }
+                }
+            }
+            While ($Stoploop -eq $false)
         }
         else {
+
+            $FilePattern = $logFile.Name | Select-String -Pattern "([a-zA-Z]+)(\d{4})(\d{2})(\d{2})"
+                
+            if ($FilePattern -and ($FilePattern.Matches[0].Groups.Count -ge 5)) {
+                $FileType = $FilePattern.Matches[0].Groups[1].Value
+                $FileYear = $FilePattern.Matches[0].Groups[2].Value
+                $FileMonth = $FilePattern.Matches[0].Groups[3].Value
+                $FileDay = $FilePattern.Matches[0].Groups[4].Value
+                $storagePathTemp = ("$storagePath/$FileType/$FileYear/$FileMonth/$FileDay/")
+            }
+            else {
+                $storagePathTemp = ("$storagePath/OtherLogs/{0:yyyy}/{0:MM}/{0:dd}/" -f $executionDate)
+            }
             $fileOutputPath = $logFile.FullName
         }
 
@@ -106,7 +94,7 @@ function ProcessLogFiles {
             Write-Host "Loading $($logFile.Name)"            
             $eventStreamConnection = ($eventHubs.ConnectionStrings | Where-Object { $_.Report -eq "Reports" }).EventHubConnectionString
 
-            if ($eventStreamConnection){
+            if ($eventStreamConnection) {
                 Write-Host "Sending to EventHub"
                 Add-LogToEventHub -connectionString $eventStreamConnection -logPath $fileOutputPath -logType $reportName
             }
@@ -117,10 +105,17 @@ function ProcessLogFiles {
             Write-Host "Loading $logFile.Name"
 
             $itemPath = "$($lakehouse.LakehouseName)/Files/$($storagePathTemp)$(Split-Path $fileOutputPath -Leaf)"
+            $tempFile = ".\temp\$(Split-Path $fileOutputPath -Leaf)"
+            if (!(Test-Path ".\temp"))
+            {
+                New-Item -Path ".\temp" -ItemType Directory -Force -ErrorAction SilentlyContinue | Out-Null
+            }
 
             Connect-Lakehouse -TenantId $servicePrincipal.TennatId -AppId $servicePrincipal.AppId -SecretText $servicePrincipal.SecretText
 
-            Add-FileToLakehouse -workspaceName $lakehouse.WorkspaceName -lakehousePath $itemPath -filePath $fileOutputPath
+            Copy-Item -Path $fileOutputPath -Destination $tempFile -Force -PassThru
+            Add-FileToLakehouse -workspaceName $lakehouse.WorkspaceName -lakehousePath $itemPath -filePath $tempFile
+            Remove-Item -Path $tempFile -Force
         }
 
         if ($isReport) {
@@ -149,14 +144,6 @@ function UploadGatewayLogs {
         Write-Host "Upload - Gateway Logs Start"        
 
         $lastRunDate = $null
-
-        #Local Output Path
-        $localOutputPath = $config.OutputPath
-    
-        # Ensure folders
-        @($localOutputPath) | ForEach-Object {
-            New-Item -ItemType Directory -Path $_ -ErrorAction SilentlyContinue | Out-Null
-        }
 
         if (Test-Path $stateFilePath) {
             $state = Get-Content $stateFilePath | ConvertFrom-Json
@@ -234,7 +221,7 @@ function UploadGatewayLogs {
                 Write-Host "Gateway Report log count: $($logFiles.Count)"
 
                 if ($logFiles.Count -gt 0) {
-                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathReports -tempPath $localOutputPath -executionDate $runDate -eventHubs $config.EventHubs -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -reportRetention $config.ReportRetention -isReport $true | Out-Null
+                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathReports -executionDate $runDate -eventHubs $config.EventHubs -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -reportRetention $config.ReportRetention -isReport $true | Out-Null
                 }
             }
 
@@ -249,7 +236,7 @@ function UploadGatewayLogs {
                 Write-Host "Gateway Verbose Log count: $($logFiles.Count)"
 
                 if ($logFiles.Count -gt 0) {
-                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathLogs -tempPath $localOutputPath -executionDate $runDate -eventHubs $config.EventHubs  -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -isReport $false | Out-Null
+                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathLogs -executionDate $runDate -eventHubs $config.EventHubs  -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -isReport $false | Out-Null
                 }
 
                 $state.GatewayLogs.VerboseLastRun = $runDate.ToString("o")
