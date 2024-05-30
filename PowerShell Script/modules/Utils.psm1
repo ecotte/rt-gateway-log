@@ -241,7 +241,9 @@ function Add-LogToEventHub {
         [string]
         $logPath,
         [string]
-        $logType
+        $logType,
+        [psobject]
+        $ConnectionProperties
     )
 
     # create Request Body
@@ -288,7 +290,7 @@ function Add-LogToEventHub {
 
         } while (-Not $correctSize) 
 
-        Add-MsgEventHub -connectionString $connectionString -msg $body
+        Add-MsgEventHub -connectionString $connectionString -msg $body -connectionProperties $ConnectionProperties
 
         $minIndex = $maxIndex + 1
         $maxIndex = $minIndex + $chunckSize
@@ -303,7 +305,9 @@ function Add-MsgEventHub {
         [string]
         $connectionString,
         [string]
-        $msg
+        $msg,
+        [psobject]
+        $connectionProperties
     )
 
     $connectionStringSplited = Split-EventHubConnectionString -connectionString $connectionString
@@ -342,7 +346,7 @@ function Add-MsgEventHub {
     $method = "POST"
     $dest = "https://" + $URI + '/messages?timeout=60&api-version=2014-01'
 
-    Invoke-RestMethod -Uri $dest -Method $method -Headers $headers -Body $msg -Verbose -ContentType "application/atom+xml;type=entry;charset=utf-8"
+    Invoke-RestMethod -Uri $dest -Method $method -Headers $headers -Body $msg -Verbose -ContentType "application/atom+xml;type=entry;charset=utf-8" -MaximumRetryCount $connectionProperties.MaximumRetryCount -RetryIntervalSec $connectionProperties.RetryIntervalSec
 
 }
 
@@ -357,7 +361,6 @@ function Merge-ReportFiles {
     $logPath = Split-Path $logFile -Parent
     $logFileName = Split-Path $logFile -Leaf
 
-
     $date = [datetime]::UtcNow
 
     $historyFolder = New-Item -Path ("$(Split-Path $logPath -Parent)\History") -ItemType Directory -Force -ErrorAction SilentlyContinue 
@@ -365,9 +368,6 @@ function Merge-ReportFiles {
     $packFiles = Get-ChildItem -Path $historyFolder -Filter "$report*_f.log" -Recurse -ErrorAction SilentlyContinue | where-object { ($date.Date -eq $_.CreationTime.Date) -and ($_.Length -lt 100mb) }
 
     $packFile = ""
-
-
-
 
     if ($packFiles.Count -eq 0) {
         $MachineName = $logFileName -split "_" | Select-Object -first 1 -Skip 1

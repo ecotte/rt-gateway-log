@@ -71,6 +71,10 @@ $GatewayLogUploadConfig = @{
         WorkspaceName = ""
         LakehouseName = ""        
     }
+    ConnectionProperties = {
+        MaximumRetryCount = 3
+        RetryIntervalSec = 1
+    }
 }
 
 $configFile = ".\configs\config.json"

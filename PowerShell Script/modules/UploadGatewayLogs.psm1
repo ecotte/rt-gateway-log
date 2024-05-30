@@ -16,7 +16,9 @@ function ProcessLogFiles {
         [int]
         $reportRetention,
         [bool]
-        $isReport
+        $isReport,
+        [psobject]
+        $ConnectionProperties
     )
 
     Write-Host "Files modified since last run: $($logFiles.Count)"
@@ -96,7 +98,7 @@ function ProcessLogFiles {
 
             if ($eventStreamConnection) {
                 Write-Host "Sending to EventHub"
-                Add-LogToEventHub -connectionString $eventStreamConnection -logPath $fileOutputPath -logType $reportName
+                Add-LogToEventHub -connectionString $eventStreamConnection -logPath $fileOutputPath -logType $reportName -ConnectionProperties $ConnectionProperties
             }
         }        
 
@@ -210,6 +212,15 @@ function UploadGatewayLogs {
             if (!$gatewayId) {
                 throw "Gateway Id is not defined."
             }  
+
+            $ConnectionProperties = $gatewayProperties.ConnectionProperties
+
+            if (!$ConnectionProperties) {
+                $ConnectionProperties = @{
+                    MaximumRetryCount = 3
+                    RetryIntervalSec = 1
+                }
+            }
         
             # Gateway Reports
             if ($config.EventHubs.UploadReports -or $config.Lakehouse.UploadReports) {
@@ -221,7 +232,7 @@ function UploadGatewayLogs {
                 Write-Host "Gateway Report log count: $($logFiles.Count)"
 
                 if ($logFiles.Count -gt 0) {
-                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathReports -executionDate $runDate -eventHubs $config.EventHubs -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -reportRetention $config.ReportRetention -isReport $true | Out-Null
+                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathReports -executionDate $runDate -eventHubs $config.EventHubs -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -reportRetention $config.ReportRetention -isReport $true  -ConnectionProperties $ConnectionProperties | Out-Null
                 }
             }
 
@@ -236,7 +247,7 @@ function UploadGatewayLogs {
                 Write-Host "Gateway Verbose Log count: $($logFiles.Count)"
 
                 if ($logFiles.Count -gt 0) {
-                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathLogs -executionDate $runDate -eventHubs $config.EventHubs  -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -isReport $false | Out-Null
+                    ProcessLogFiles -logFiles $logFiles -storagePath $outputPathLogs -executionDate $runDate -eventHubs $config.EventHubs  -lakehouse $config.Lakehouse -servicePrincipal $config.ServicePrincipal -isReport $false -ConnectionProperties $ConnectionProperties | Out-Null
                 }
 
                 $state.GatewayLogs.VerboseLastRun = $runDate.ToString("o")
