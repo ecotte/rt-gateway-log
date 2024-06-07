@@ -1,5 +1,27 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+An on-premises data gateway is software that you install in an on-premises network. The gateway facilitates access to data in that network. The current process involves moving data from an on-premises data source through a gateway to various Microsoft cloud services, such as Power BI. On-premises data gateways serve as bridges, facilitating secure data transfer between these endpoints. These gateways enable multiple users to connect to multiple on-premises data sources, making them suitable for complex scenarios where various users need access to different data sources. 
+
+However, managing the traffic through an on-premises data gateway is challenging due to the number of data sources involved. Currently, there is no solution that provides visibility into the logs of all queries passing through a gateway, making it difficult to trace queries back to their respective data sources. Also a challenge that on-premises data gateways often face is effectively leveraging real-time log analytics, leading to high latency and less-than-optimal information, affecting incident response and gateway health monitoring. 
+
+Our proposed solution addresses this issue by centralizing the logs for easier analysis. This will allow for better management and tracking of data traffic through the gateway. 
+
+Using Microsoft Fabric, these logs are centralized in an event stream and processed efficiently through the EventHouse. This centralized data is then available for analysis in Power BI and can support automated response rules via a data activator (pending implementation). 
+
+![image](https://github.com/ecotte/rt-gateway-log/assets/9998133/99054094-ad9f-4494-a622-8e44c3dcbbd0)
+
+
+This solution uses Microsoft Fabric to address these issues by providing: 
+
+- In-App Configurations  
+- PowerShell Setup Configurations 
+- Power BI Template  
+
+Benefits include faster incident response, improved gateway health analytics, and streamlined operations, consequently enhancing overall efficiency and reducing downtime. 
+
+
+
+
+
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
