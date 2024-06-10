@@ -179,7 +179,7 @@ function Connect-Lakehouse {
 }
 
 function Add-FileToLakehouse {
-
+    [cmdletbinding()]
     param
     (        
         $ctx,             
@@ -248,54 +248,57 @@ function Add-LogToEventHub {
 
     # create Request Body
     $csv = Import-Csv -Path $logPath 
-    $csvMaxIndex = $csv.Count - 1
-    $continue = $true
-    $correctSize = $true
-    $chunckSize = 2000 
-    $minIndex = 0
-    $maxIndex = $minIndex + $chunckSize - 1
+    $csvCount = $csv.Count
+    if ($csvCount -gt 0) {
+        $csvMaxIndex = $csvCount - 1
+        $continue = $true
+        $correctSize = $true
+        $chunckSize = 2000 
+        $minIndex = 0
+        $maxIndex = $minIndex + $chunckSize - 1
     
-    do {
+        do {
 
-        if ($maxIndex -ge $csvMaxIndex) {
-            $maxIndex = $csvMaxIndex
-            $continue = $false
-        }
-
-        do{            
-
-            $dif = ($maxIndex-$minIndex)
-            $currentPart = $csv | Select-Object -Index ($minIndex..$maxIndex)
-
-            if ($dif -eq 0 -and $correctSize -eq $false -and $logType -eq "QueryStartReport")
-            {
-                $currentPart.QueryText = "QueryText too large!"
+            if ($maxIndex -ge $csvMaxIndex) {
+                $maxIndex = $csvMaxIndex
+                $continue = $false
             }
 
-            $body = @{
-                logType = $logType
-                log     = @($currentPart)
-                logDate = [datetime]::UtcNow
-            } | ConvertTo-Json -Depth 5
+            do {            
 
-            $jsonSize = [Text.Encoding]::UTF8.GetByteCount($body)/1024
+                $dif = ($maxIndex - $minIndex)
+                $currentPart = $csv | Select-Object -Index ($minIndex..$maxIndex)
 
-            if ($jsonSize -ge 980) {
-                $maxIndex = $minIndex + [math]::floor( $dif / 2)
-                $correctSize = $false
-                $continue = $true
-            } else {
-                $correctSize = $true
-            }
+                if ($dif -eq 0 -and $correctSize -eq $false -and $logType -eq "QueryStartReport") {
+                    $currentPart.QueryText = "QueryText too large!"
+                }
 
-        } while (-Not $correctSize) 
+                $body = @{
+                    logType = $logType
+                    log     = @($currentPart)
+                    logDate = [datetime]::UtcNow
+                } | ConvertTo-Json -Depth 5
 
-        Add-MsgEventHub -connectionString $connectionString -msg $body -connectionProperties $ConnectionProperties
+                $jsonSize = [Text.Encoding]::UTF8.GetByteCount($body) / 1024
 
-        $minIndex = $maxIndex + 1
-        $maxIndex = $minIndex + $chunckSize
+                if ($jsonSize -ge 980) {
+                    $maxIndex = $minIndex + [math]::floor( $dif / 2)
+                    $correctSize = $false
+                    $continue = $true
+                }
+                else {
+                    $correctSize = $true
+                }
+
+            } while (-Not $correctSize) 
+
+            Add-MsgEventHub -connectionString $connectionString -msg $body -connectionProperties $ConnectionProperties
+
+            $minIndex = $maxIndex + 1
+            $maxIndex = $minIndex + $chunckSize
     
-    } while ($continue)   
+        } while ($continue)   
+    }
 }
 
 function Add-MsgEventHub {
@@ -351,6 +354,7 @@ function Add-MsgEventHub {
 }
 
 function Merge-ReportFiles {
+    [cmdletbinding()]
     param (
         [string]
         $logFile,
@@ -387,6 +391,7 @@ function Merge-ReportFiles {
 }
 
 function Remove-OldReportFiles {
+    [cmdletbinding()]
     param (
         [string]
         $logFile,
