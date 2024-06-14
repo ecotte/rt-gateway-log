@@ -382,7 +382,7 @@ function Merge-ReportFiles {
         $packFile = $packFiles[0].FullName
     }
 
-    Import-Csv -Path $logFile | Export-Csv $packFile -NoTypeInformation -Append
+    Import-Csv -Path $logFile | Export-Csv $packFile -NoTypeInformation -Append -Force
 
 
     Remove-Item -Path $logFile -Force -ErrorAction SilentlyContinue | Out-Null
