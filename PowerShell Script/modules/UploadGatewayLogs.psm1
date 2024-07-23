@@ -108,8 +108,7 @@ function ProcessLogFiles {
 
             $itemPath = "$($lakehouse.LakehouseName)/Files/$($storagePathTemp)$(Split-Path $fileOutputPath -Leaf)"
             $tempFile = ".\temp\$(Split-Path $fileOutputPath -Leaf)"
-            if (!(Test-Path ".\temp"))
-            {
+            if (!(Test-Path ".\temp")) {
                 New-Item -Path ".\temp" -ItemType Directory -Force -ErrorAction SilentlyContinue | Out-Null
             }
 
@@ -148,7 +147,14 @@ function UploadGatewayLogs {
         $lastRunDate = $null
 
         if (Test-Path $stateFilePath) {
-            $state = Get-Content $stateFilePath | ConvertFrom-Json
+            $state = Get-Content $stateFilePath
+
+            if ([string]::IsNullOrEmpty($state)) {
+                $state = New-Object psobject 
+            }
+            else {
+                $state = Get-Content $stateFilePath | ConvertFrom-Json
+            }
         }
         else {
             $state = New-Object psobject 
@@ -173,7 +179,12 @@ function UploadGatewayLogs {
             $verboseLastRun = $state.GatewayLogs.VerboseLastRun
         }
         else {
-            $state.GatewayLogs | Add-Member -NotePropertyName "VerboseLastRun" -NotePropertyValue (Get-Date -Date "2000-01-01") -Force
+            if ($state.GatewayLogs) {
+                $state.GatewayLogs.VerboseLastRun = (Get-Date -Date "2000-01-01")
+            }
+            else {
+                $state | Add-Member -NotePropertyName "GatewayLogs" -NotePropertyValue @{"VerboseLastRun" = Get-Date -Date "2000-01-01" } -Force
+            }
             $verboseLastRun = $state.GatewayLogs.VerboseLastRun
         }
 
@@ -218,7 +229,7 @@ function UploadGatewayLogs {
             if (!$ConnectionProperties) {
                 $ConnectionProperties = @{
                     MaximumRetryCount = 3
-                    RetryIntervalSec = 1
+                    RetryIntervalSec  = 1
                 }
             }
         
