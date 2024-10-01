@@ -400,3 +400,26 @@
 .alter table GatewayNodeInfo policy caching hotdata = time(14.00:00:00) hotindex = time(14.00:00:00)
 .alter table GatewayNodeInfo policy update "[{\"IsEnabled\":true,\"Source\":\"GatewayReports-Raw\",\"Query\":\"parse_GatewayNodeInfo()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
 .alter table GatewayNodeInfo policy partitioning "{\"PartitionKeys\":[{\"ColumnName\":\"clusterId\",\"Kind\":1,\"Properties\":{\"Function\":1,\"MaxPartitionCount\":128,\"Seed\":1,\"PartitionAssignmentMode\":1}},{\"ColumnName\":\"logDate\",\"Kind\":2,\"Properties\":{\"Reference\":\"1970-01-01T00:00:00\",\"RangeSize\":\"1.00:00:00\",\"OverrideCreationTime\":true}}],\"EffectiveDateTime\":\"2024-03-21T15:00:42.2624751Z\",\"MinRowCountPerOperation\":0,\"MaxRowCountPerOperation\":0,\"MaxOriginalSizePerOperation\":0}"
+.create-merge table CopyExecutionReport (GatewayObjectId:guid, ActivityId:guid, CopyExecutionStartTimeUTC:datetime, CompletionStatus:string, CopyExecutionDuration_ms:decimal, CopyWorkerCPUUtilizationPercentage:decimal, CopyWorkerMemoryUsage_byte:decimal) with (folder = "Facts") 
+.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from CopyExecutionReport", skipvalidation = "true") parse_CopyExecutionReport() {
+  ['GatewayReports-Raw']
+    | where logType == "CopyExecutionReport"
+    | project log
+    | mv-expand log
+    | evaluate bag_unpack(log) : (
+        GatewayObjectId:guid,
+        ActivityId:guid, 
+        CopyExecutionStartTimeUTC:datetime, 
+        CompletionStatus:string, 
+        ['CopyExecutionDuration(ms)']:decimal,    
+        ['CopyWorkerCPUUtilization(%)']:decimal, 
+        ['CopyWorkerMemoryUsage(byte)']:decimal
+    )
+    | project-rename ['CopyExecutionDuration_ms']=['CopyExecutionDuration(ms)'], 
+    ['CopyWorkerCPUUtilizationPercentage']=['CopyWorkerCPUUtilization(%)'],
+    ['CopyWorkerMemoryUsage_byte']=['CopyWorkerMemoryUsage(byte)']
+}
+.alter table CopyExecutionReport policy retention @'{"SoftDeletePeriod":"3650.00:00:00","Recoverability":"Enabled"}'
+.alter table CopyExecutionReport policy caching hotdata = time(14.00:00:00) hotindex = time(14.00:00:00)
+.alter table CopyExecutionReport policy update "[{\"IsEnabled\":true,\"Source\":\"GatewayReports-Raw\",\"Query\":\"parse_CopyExecutionReport()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
+.alter table CopyExecutionReport policy partitioning "{\"PartitionKeys\":[{\"ColumnName\":\"GatewayObjectId\",\"Kind\":1,\"Properties\":{\"Function\":1,\"MaxPartitionCount\":128,\"Seed\":1,\"PartitionAssignmentMode\":1}},{\"ColumnName\":\"CopyExecutionStartTimeUTC\",\"Kind\":2,\"Properties\":{\"Reference\":\"1970-01-01T00:00:00\",\"RangeSize\":\"1.00:00:00\",\"OverrideCreationTime\":true}}],\"EffectiveDateTime\":\"2024-03-21T15:00:42.2624751Z\",\"MinRowCountPerOperation\":0,\"MaxRowCountPerOperation\":0,\"MaxOriginalSizePerOperation\":0}"
