@@ -27,13 +27,14 @@ To implement implement this solution, we have some step to follow. This steps wi
 
 - Fabric items initial setup
 - Script deployment and setup in the gateway nodes
+- Connect Fabric Items
 - Report deployment
 
 ## Requirements and estimated workloads 
 
 - Powershell 7+
 - Microsoft Fabric Capacity of F16 or higher (the capacity size needed will depend on the amount of logs sent and processed by the system)
-- Service Principal with Member access to the Workspace and Admin 
+- Service Principal with Member access to the Workspace and Power BI API Permission "Tenant.Read.All" for extracting the Gateway Information
 
 ## Fabric initial setup 
 
@@ -41,19 +42,41 @@ To implement implement this solution, we have some step to follow. This steps wi
 
 Definition: The event stream feature in Microsoft Fabric offers a centralized place where you to capture, transform and route real-time events to various destinations with a no-code experience. 
 
-New -> more options -> real-time intelligence -> eventstream 
+You will need to create 2 Eventstram. 1 for the Heartbeat and another for the reports.
+
+To create an Eventstram go to "New Item -> Eventstream"
+
+Once the Eventstram is created, click on "New Source" and select "Custom App".
+
+<img width="682" alt="image" src="https://github.com/user-attachments/assets/03da6ee2-bd52-49fb-a2e0-cf7a6bd49b8f">
+
+For each event stram, go to the "Custom App" source, and select the connection string. It will be used for the setup of the script.
+
+<img width="652" alt="image" src="https://github.com/user-attachments/assets/5532f16b-af1a-430c-b33d-90bc5c256036">
+
 
 ### Lakehouse 
 
 Definition: The Microsoft Fabric Lakehouse is a unified data architecture that combines features of data lakes and data warehouses. It integrates structured and unstructured data, providing a flexible platform for storing, managing, and analysing large volumes of information.   
 
-New -> more options -> data engineering -> lakehouse 
+To create the Lakehouse go to "New Item -> Lakehouse"
 
-### KQL 
+Copy the workspace id and lakehouse id from the URL as shown in the image.
 
-Definition: The KQL database in Microsoft Fabric is primarily used to store and analyse real-time analytics data. It’s a fully managed Kusto engine that allows queries to be executed using the Kusto Query Language (KQL). You can use the KQL database to store historical data and process streaming data as needed 
+<img width="810" alt="image" src="https://github.com/user-attachments/assets/195f5f40-1f2b-41c0-9138-36e1194f7908">
 
-New -> more options -> real-time intelligence -> event house 
+
+### Eventhouse 
+
+Definition: The Eventhouse in Microsoft Fabric is primarily used to store and analyse real-time analytics data. It’s a fully managed Kusto engine that allows queries to be executed using the Kusto Query Language (KQL). You can use the KQL database to store historical data and process streaming data as needed 
+
+First create the Eventhouse with "New Item -> Eventhouse"
+
+After creating the Eventhouse, we are going to run the content of the script "[KQL\Setup.kql](https://github.com/ecotte/rt-gateway-log/blob/main/KQL/Setup.kql)" and create the tables and policies.
+
+The data flow is as follow:
+![image](https://github.com/user-attachments/assets/92be7e34-f8f1-4434-86e3-a25638368c1f)
+
 
 ## Script deployment and setup in the gateway nodes
 
@@ -93,3 +116,53 @@ The heartbeat logs contain the status of a gateway.  The script will loop and se
 ### Run-UploadGatewayLogs Script  
 
 This is the main script that does the data movement from local to the service. In case of the Report files we can send the files to the eventstream and lakehouse. The log files are sent to the Lakehouse.
+
+### Get-DataGatewayInfo
+
+It will get the Gateway Node info, we can run this once per week or even lower rate.
+
+### Schedule the Scripts
+
+We can use the Task Scheduler in Windows to automate the script. You will fin a template of the Task Schedulers in the folter [\TaskSchedulers](https://github.com/ecotte/rt-gateway-log/tree/main/TaskSchedulers)
+
+## Connect Fabric Items
+
+After creating the Fabric items and seting up the scripts, you should start receiving data in the Eventstrams, and now we need to connect the Eventstreams to the Eventhouse.
+
+### Heartbeat Eventstream
+
+Go to the Heartbeat Eventstream, and select "New Destination -> KQL Database"
+
+Use the "Direct ingetion" options and look for the KQL Database.
+
+<img width="247" alt="image" src="https://github.com/user-attachments/assets/6c6cc88d-ccc7-4cab-be59-5730ad6e8154">
+
+Select the "GatewayHeartbeat" table and name the connector.
+
+<img width="857" alt="image" src="https://github.com/user-attachments/assets/9ea7a949-c9b6-49b2-b204-6ff43a54c0ff">
+
+Once you see some data, click in "Advance" and chose "Existing mapping", and select from the drop down "GatewayHeartbeat_mapping".
+
+<img width="719" alt="image" src="https://github.com/user-attachments/assets/a55f9ef9-ee3e-45d8-84be-28cf22c05ca9">
+
+### Report Eventstream
+
+Go to the Report Eventstream, and select "New Destination -> KQL Database"
+
+Use the "Direct ingetion" options and look for the KQL Database.
+
+<img width="239" alt="image" src="https://github.com/user-attachments/assets/1f51154b-4851-4898-b159-95650affabaf">
+
+Select the "GatewayReport-Raw" table and name the connector.
+
+<img width="716" alt="image" src="https://github.com/user-attachments/assets/4e55e3c2-cd7d-4e1e-81aa-6a4021426533">
+
+
+Once you see some data, click in "Advance" and chose "Existing mapping", and select from the drop down "GatewayReport-Raw_mapping".
+
+<img width="722" alt="image" src="https://github.com/user-attachments/assets/6e194238-dc3d-4df8-ae43-97f853331608">
+
+## Report Deployment
+
+*** Cooming soon ***
+
