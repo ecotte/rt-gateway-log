@@ -86,7 +86,7 @@ try {
             logDate = [datetime]::UtcNow
         } | ConvertTo-Json -Depth 5
 
-        Add-MsgEventHub -connectionString $eventStreamConnection -msg $body
+        Add-MsgEventHub -connectionString $eventStreamConnection -msg $body -connectionProperties $config.ConnectionProperties
     }
 
 }
