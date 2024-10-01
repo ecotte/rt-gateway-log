@@ -97,7 +97,7 @@ do {
 
         $msg = $processMsg | ConvertTo-Json
 
-        Add-MsgEventHub -connectionString $EventHub.EventHubConnectionString -msg $msg
+        Add-MsgEventHub -connectionString $EventHub.EventHubConnectionString -msg $msg -connectionProperties $config.ConnectionProperties
     }
     catch {
         $ex = $_.Exception

@@ -71,7 +71,7 @@ $GatewayLogUploadConfig = @{
         WorkspaceName = ""
         LakehouseName = ""        
     }
-    ConnectionProperties = {
+    ConnectionProperties = @{
         MaximumRetryCount = 3
         RetryIntervalSec = 1
     }
