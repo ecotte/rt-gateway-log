@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-  "name": "366c2ecb0b4126f05bd4",
+  "name": "7165a98371a55196c544",
   "position": {
-    "x": 476.98480243161094,
+    "x": 1063.4210654499993,
     "y": 0,
-    "z": 14002,
-    "height": 82.480243161094222,
-    "width": 200.75379939209728,
-    "tabOrder": 14002
+    "z": 12001,
+    "height": 82.4666742437773,
+    "width": 200.84625501307053,
+    "tabOrder": 12001
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Gateway Node Info"
                     }
                   },
-                  "Property": "ServiceName"
+                  "Property": "Gateway ID"
                 }
               },
-              "queryRef": "QueryExecutionUnified.ServiceName",
-              "nativeQueryRef": "ServiceName",
+              "queryRef": "Gateway Node Info.Gateway ID",
+              "nativeQueryRef": "Gateway ID",
               "active": true
             }
           ]
@@ -208,13 +208,6 @@
                   "Value": "true"
                 }
               }
-            },
-            "singleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
             }
           }
         }
@@ -254,6 +247,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "Gateway ID",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }

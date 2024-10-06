@@ -8,6 +8,14 @@ table 'Gateway Node Info'
 		summarizeBy: none
 		sourceColumn: Gateway ID
 
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 2,
+				  "kind": 1,
+				  "supportsMultipleValues": true,
+				  "selectAllValue": "__SelectAll__"
+				}
+
 		annotation SummarizationSetBy = Automatic
 
 	column 'Last Information Date'

@@ -110,7 +110,7 @@ cultureInfo en-US
 			    "queryexecutionunified.avg__request_duration_s": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "Avg. Query Duration (s)"
 			        }
 			      },
@@ -296,7 +296,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queries": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "# Queries"
 			        }
 			      },
@@ -317,7 +317,7 @@ cultureInfo en-US
 			    "queryexecutionunified.requests": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "# Requests"
 			        }
 			      },
@@ -338,7 +338,7 @@ cultureInfo en-US
 			    "queryexecutionunified.query_avg__execution__refresh_ms": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "Query Avg. Execution - Refresh (ms)"
 			        }
 			      },
@@ -359,7 +359,7 @@ cultureInfo en-US
 			    "queryexecutionunified.query_avg__execution__directquery_ms": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "Query Avg. Execution - DirectQuery (ms)"
 			        }
 			      },
@@ -380,7 +380,7 @@ cultureInfo en-US
 			    "queryexecutionunified.disk_read_avg__byte_sec": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "Disk Read Avg. (byte/sec)"
 			        }
 			      },
@@ -401,7 +401,7 @@ cultureInfo en-US
 			    "queryexecutionunified.disk_write_avg__byte_sec": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "Disk Write Avg. (byte/sec)"
 			        }
 			      },
@@ -422,7 +422,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queries_errors": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "# Queries (errors)"
 			        }
 			      },
@@ -443,7 +443,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queries_refresh": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "# Queries (Refresh)"
 			        }
 			      },
@@ -464,7 +464,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queries_directquery": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Execution Measures",
 			          "ConceptualProperty": "# Queries (DirectQuery)"
 			        }
 			      },

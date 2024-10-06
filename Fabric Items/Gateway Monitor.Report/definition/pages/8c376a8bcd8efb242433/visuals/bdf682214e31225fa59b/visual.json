@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-  "name": "50eec42e772ec2c24bcf",
+  "name": "bdf682214e31225fa59b",
   "position": {
-    "x": 677.4384236453202,
-    "y": 1.7733990147783252,
-    "z": 12000,
-    "height": 79.802955665024626,
-    "width": 187.09359605911331,
-    "tabOrder": 12000
+    "x": 862.57481043692871,
+    "y": 0,
+    "z": 14004,
+    "height": 82.4666742437773,
+    "width": 195.52582441669779,
+    "tabOrder": 14004
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Period"
+                      "Entity": "Gateway Node Info"
                     }
                   },
-                  "Property": "Days Back"
+                  "Property": "Cluster Name"
                 }
               },
-              "queryRef": "Period.Days Back",
-              "nativeQueryRef": "Days Back",
+              "queryRef": "Gateway Node Info.Cluster Name",
+              "nativeQueryRef": "Cluster Name",
               "active": true
             }
           ]
@@ -58,45 +58,11 @@
                 }
               }
             },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "p",
-                    "Entity": "Period",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "p"
-                                }
-                              },
-                              "Property": "Days Back"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "7L"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
               }
             }
           }
@@ -182,22 +148,21 @@
           }
         }
       ],
-      "selection": [
-        {
-          "properties": {
-            "strictSingleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
       "items": [
         {
           "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
             "background": {
               "solid": {
                 "color": {
@@ -207,6 +172,27 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "padding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
                 }
               }
             }
@@ -250,7 +236,7 @@
       ]
     },
     "syncGroup": {
-      "groupName": "Hour (#)",
+      "groupName": "Gateway",
       "fieldChanges": true,
       "filterChanges": true
     },

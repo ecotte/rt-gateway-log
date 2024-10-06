@@ -20,7 +20,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries"
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "QueryExecutionUnified"
+                    "Entity": "Execution Measures"
                   }
                 },
                 "Property": "# Queries"

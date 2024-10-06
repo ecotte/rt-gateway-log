@@ -20,7 +20,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "Query Avg. Execution - Refresh (ms)"
@@ -35,7 +35,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "Query Avg. Execution - DirectQuery (ms)"
@@ -50,7 +50,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "Disk Read Avg. (byte/sec)"
@@ -65,7 +65,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "Disk Write Avg. (byte/sec)"
@@ -85,7 +85,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "QueryExecutionUnified"
+                    "Entity": "Execution Measures"
                   }
                 },
                 "Property": "Query Avg. Execution - Refresh (ms)"

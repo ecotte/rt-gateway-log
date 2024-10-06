@@ -39,7 +39,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries"
@@ -53,7 +53,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries (Refresh)"
@@ -68,7 +68,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries (DirectQuery)"
@@ -83,7 +83,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Requests"
@@ -97,7 +97,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries (errors)"

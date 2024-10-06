@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-  "name": "4ce7adf606bb7b05ae70",
+  "name": "ddb4293d55f56773216e",
   "position": {
-    "x": 1063.6838905775076,
+    "x": 491.47477633993088,
     "y": 0,
-    "z": 14000,
-    "height": 82.480243161094222,
-    "width": 200.75379939209728,
-    "tabOrder": 14000
+    "z": 14002,
+    "height": 79.806458945590933,
+    "width": 186.88012469759212,
+    "tabOrder": 14002
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Gateway Node Info"
+                      "Entity": "Period"
                     }
                   },
-                  "Property": "Cluster Name"
+                  "Property": "Days Back"
                 }
               },
-              "queryRef": "Gateway Node Info.Cluster Name",
-              "nativeQueryRef": "Cluster Name",
+              "queryRef": "Period.Days Back",
+              "nativeQueryRef": "Days Back",
               "active": true
             }
           ]
@@ -58,11 +58,45 @@
                 }
               }
             },
-            "outlineWeight": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "p",
+                    "Entity": "Period",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
+                                }
+                              },
+                              "Property": "Days Back"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "7L"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
@@ -148,21 +182,22 @@
           }
         }
       ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
       "items": [
         {
           "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
             "background": {
               "solid": {
                 "color": {
@@ -172,27 +207,6 @@
                       "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "outlineStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            },
-            "padding": {
-              "expr": {
-                "Literal": {
-                  "Value": "6D"
-                }
-              }
-            },
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
                 }
               }
             }
@@ -236,7 +250,7 @@
       ]
     },
     "syncGroup": {
-      "groupName": "Gateway",
+      "groupName": "Hour (#)",
       "fieldChanges": true,
       "filterChanges": true
     },

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-  "name": "c485bf88966292629408",
+  "name": "1c577e18ff34f1231354",
   "position": {
-    "x": 862.57481043692871,
+    "x": 1063.4210654499993,
     "y": 0,
-    "z": 9000,
+    "z": 14005,
     "height": 82.4666742437773,
-    "width": 195.52582441669779,
-    "tabOrder": 9000
+    "width": 200.84625501307053,
+    "tabOrder": 14005
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "Gateway Node Info"
                     }
                   },
-                  "Property": "Cluster Name"
+                  "Property": "Gateway ID"
                 }
               },
-              "queryRef": "Gateway Node Info.Cluster Name",
-              "nativeQueryRef": "Cluster Name",
+              "queryRef": "Gateway Node Info.Gateway ID",
+              "nativeQueryRef": "Gateway ID",
               "active": true
             }
           ]
@@ -198,6 +198,19 @@
             }
           }
         }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -236,7 +249,7 @@
       ]
     },
     "syncGroup": {
-      "groupName": "Gateway",
+      "groupName": "Gateway ID",
       "fieldChanges": true,
       "filterChanges": true
     },

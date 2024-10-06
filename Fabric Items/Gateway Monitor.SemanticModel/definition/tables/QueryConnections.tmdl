@@ -30,13 +30,23 @@ table QueryConnections
 
 	partition QueryConnections = m
 		mode: directQuery
-		source =
+		source = ```
 				let
+				    selectedGatewaysID = if Type.Is(Value.Type(SelectedGateways), List.Type) then 
+				      Text.Combine({"'", Text.Combine(SelectedGateways, "','") , "'"})
+				    else
+				      Text.Combine({"'" , SelectedGateways , "'"}),
+				
+				    selectAllGateways = if Type.Is(Value.Type(SelectedGateways), List.Type) then 
+				      List.Contains(SelectedGateways, "__SelectAll__")
+				    else
+				      true,
 				    Source = AzureDataExplorer.Contents(KustoURL, KustoDB, null, null),
 				    QueryConnections1 = Source{[Name="QueryConnections"]}[Data],
-				    #"Invoked FunctionQueryConnections1" = QueryConnections1(DateTime.ToText(DateToSearch, "yyyy-MM-dd"), DaysBack)
+				    #"Invoked FunctionQueryConnections1" = QueryConnections1(DateTime.ToText(DateToSearch, "yyyy-MM-dd"), DaysBack,selectAllGateways,Text.Combine({"[",selectedGatewaysID,"]"}))
 				in
 				    #"Invoked FunctionQueryConnections1"
+				```
 
 	annotation PBI_NavigationStepName = Navigation
 

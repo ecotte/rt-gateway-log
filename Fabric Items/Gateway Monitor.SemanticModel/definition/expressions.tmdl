@@ -32,3 +32,12 @@ expression DateToSearch = #datetime(2024, 10, 6, 0, 0, 0) meta [IsParameterQuery
 
 	annotation PBI_ResultType = DateTime
 
+expression SelectedGateways = "__SelectAll__" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b01fd9ab-b809-4514-9708-c7c91f887853
+	queryGroup: Parameters
+	parameterValuesColumn: 'Gateway Node Info'.'Gateway ID'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

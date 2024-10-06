@@ -34,7 +34,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Nodes"
@@ -48,7 +48,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries"
@@ -62,7 +62,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "# Queries (errors)"
@@ -76,7 +76,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "Avg. Query Duration (s)"
@@ -91,7 +91,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Execution Measures"
                     }
                   },
                   "Property": "Duration (s)"
