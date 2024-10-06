@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU08",
+      "reportVersionAtImport": "5.58",
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Gateway_Monitoring126513412014013.json",
+      "reportVersionAtImport": "5.58",
+      "type": "RegisteredResources"
+    }
+  },
+  "layoutOptimization": "None",
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU08",
+          "path": "BaseThemes/CY24SU08.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Gateway_Monitoring126513412014013.json",
+          "path": "Gateway_Monitoring126513412014013.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "Mashup_profiles_Background89015504288993930075.png",
+          "path": "Mashup_profiles_Background89015504288993930075.png",
+          "type": "Image"
+        },
+        {
+          "name": "Requests_Background8022619583811181878256453692.png",
+          "path": "Requests_Background8022619583811181878256453692.png",
+          "type": "Image"
+        },
+        {
+          "name": "gateway-monitoring-solution-ba6590567192205818.png",
+          "path": "gateway-monitoring-solution-ba6590567192205818.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

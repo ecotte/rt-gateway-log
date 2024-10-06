@@ -1,0 +1,34 @@
+expression KustoURL = "https://trd-98c7r0ptpb3uh404k9.z6.kusto.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 69a90fe3-c582-4c20-a98b-0b4930d995c4
+	queryGroup: Parameters
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression KustoDB = "Gateway Monitoring" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: add3430a-6ad1-4ba5-a95a-7fe358e5dcb6
+	queryGroup: Parameters
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression DaysBack = 7 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+	lineageTag: f27daff9-939a-4920-b526-c1094ddcef00
+	queryGroup: Parameters
+	parameterValuesColumn: Period.'Days Back'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Number
+
+expression DateToSearch = #datetime(2024, 10, 6, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 5b4a36ca-20f6-410c-9dae-33c164f5c0e1
+	queryGroup: Parameters
+	parameterValuesColumn: Calendar.Date
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = DateTime
+

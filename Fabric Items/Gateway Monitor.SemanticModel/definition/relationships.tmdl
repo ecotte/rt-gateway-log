@@ -1,0 +1,36 @@
+relationship ae740edc-ce39-451f-bdcf-424274cbc63c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CalendarFrom.Date
+	toColumn: LocalDateTable_f4451b8c-4924-4b93-9f76-e84b0912ddd2.Date
+
+relationship 4323bd16-4bfe-46ae-ab1f-31035b941d50
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CalendarFrom.'Week Start Date'
+	toColumn: LocalDateTable_56f31ebd-6495-479f-b1bd-d193ef29deb7.Date
+
+relationship 07b0fd99-1fc6-4aa9-9a1b-40a2154e6de0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CalendarFrom.'Week End Date'
+	toColumn: LocalDateTable_c3d5f007-f72a-41a7-945f-4aaad100ab78.Date
+
+relationship e92960a5-6de4-41b0-bd15-0b6795cd59f7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_806bfee6-7282-4e7c-bc5c-1f501d4227f2.Date
+
+relationship 25763145-c4b0-4f83-864e-4204e7bf2ac6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'Week Start Date'
+	toColumn: LocalDateTable_758ae1f6-73ea-4834-a83d-5f63daa0003d.Date
+
+relationship 4c22e8d7-66a4-46be-ac81-69af3eaa6e95
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.'Week End Date'
+	toColumn: LocalDateTable_21295484-02b4-41dc-a118-481a9522f4e8.Date
+
+relationship 1da4fc21-aac7-7a83-e43a-c72b6a1a4133
+	crossFilteringBehavior: bothDirections
+	relyOnReferentialIntegrity
+	fromColumn: QueryConnections.QueryTrackingId
+	toColumn: QueryExecutionUnified.QueryTrackingId
+

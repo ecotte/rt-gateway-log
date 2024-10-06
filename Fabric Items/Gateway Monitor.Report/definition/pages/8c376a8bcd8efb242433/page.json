@@ -1,0 +1,166 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.2.0/schema.json",
+  "name": "8c376a8bcd8efb242433",
+  "displayName": "Queries",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'gateway-monitoring-solution-ba7306591542541692.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "gateway-monitoring-solution-ba6590567192205818.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "5f97797327f2556ca14d",
+      "target": "f71c7f83d0e1ce0f36a2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "5f97797327f2556ca14d",
+      "target": "73e88a96a2ac761f8d1b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "f71c7f83d0e1ce0f36a2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "3e30777b4d482ab477be",
+      "type": "DataFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "5f97797327f2556ca14d",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "e357011842d117ac9fa3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "484c301eec7db9d56948",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "f2243948afe06579e541",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "e3b72d4b2c8b44db5078",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "5e3d3a6862ea565e632d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "d99610b91fce0bd5048f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "f03a11b6126d9eb7c7ed",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "366c2ecb0b4126f05bd4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "4ce7adf606bb7b05ae70",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "79bf8fa802232fc4d079",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "0aeb993de86e35ec7616",
+      "type": "NoFilter"
+    },
+    {
+      "source": "73e88a96a2ac761f8d1b",
+      "target": "50eec42e772ec2c24bcf",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f2243948afe06579e541",
+      "target": "79bf8fa802232fc4d079",
+      "type": "NoFilter"
+    }
+  ]
+}
