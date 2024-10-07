@@ -26,6 +26,78 @@
 .create-merge table MashupEvaluationReport (GatewayObjectId:guid, QueryTrackingId:guid, ConnectionId:guid, DataSourceKinds:string, DataSourcePaths:string, EndTimeUTC:datetime, ['AverageCommit byte']:real, AverageIODataBytesPerSecond:real, AveragePercentProcessorTime:real, ['AverageWorkingSet byte']:real, ['MaxCommit byte']:long, MaxIODataBytesPerSecond:long, MaxPercentProcessorTime:real, ['MaxWorkingSet byte']:long, TotalBytes:long, TotalProcessorTime:timespan, TotalRows:real) with (folder = "Facts") 
 .create-merge table ConcurrentOperationAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, CounterName:string, Max:real, Min:real, Average:real) with (folder = "Facts") 
 .create-merge table GatewayNodeInfoRaw (clusterId:guid, clusterName:string, nodeId:guid, machine:string, cloudDatasourceRefresh:bool, contactInformation:string, customConnectors:bool, status:string, type:string, version:string, versionStatus:string, osName:string, osVersion:string, cores:long, logicalCores:long, memoryGb:real, logDate:datetime) with (folder = "Facts") 
+.create-or-alter function with (folder = "Parsers", skipvalidation = "true") parse_QueryStartReport_csv(T:(GatewayObjectId:guid,RequestId:guid,DataSource:dynamic,QueryTrackingId:guid,QueryExecutionStartTimeUTC:datetime,QueryType:string,QueryText:string,EvaluationContext:string)) {
+      T
+      | project GatewayObjectId,
+            RequestId,
+            DataSource=parse_json(DataSource),
+            QueryTrackingId,
+            QueryExecutionStartTimeUTC,
+            OperationType=QueryType,
+            QueryText = base64_decode_tostring(QueryText),
+            Table = iff(isempty(extract("__AS_Query__ = (.+),",1,base64_decode_tostring(QueryText))),extract("<ccon>(.+)</ccon>",1,base64_decode_tostring(QueryText)),extract("__AS_Query__ = (.+),",1,base64_decode_tostring(QueryText))),
+            EvaluationContext=parse_json(iff(isempty(parse_json(EvaluationContext)),'{"serviceTraceContexts":[{"serviceName":"Dataflow Gen1"}]}',EvaluationContext)),
+            ServiceTraceContexts=parse_json(iff(isempty(parse_json(EvaluationContext)),'{"serviceTraceContexts":[{"serviceName":"Dataflow Gen1"}]}',EvaluationContext)).serviceTraceContexts
+      | mv-expand ServiceTraceContexts
+      | extend ServiceName=ServiceTraceContexts.serviceName
+      | mv-expand ServiceTraceContexts.traceIds
+      | evaluate bag_unpack(ServiceTraceContexts_traceIds) : (
+            GatewayObjectId:guid,
+            RequestId:guid,
+            DataSource:dynamic,
+            QueryTrackingId:guid,
+            QueryExecutionStartTimeUTC:datetime,
+            OperationType:string,
+            QueryText:string,
+            Table:string,
+            EvaluationContext:dynamic,
+            ServiceTraceContexts:dynamic,
+            ServiceName:string,
+            key:string,
+            value:string
+      )
+      | evaluate pivot(key,take_any(value)) : (
+            GatewayObjectId:guid,
+            RequestId:guid,
+            DataSource:dynamic,
+            QueryTrackingId:guid,
+            QueryExecutionStartTimeUTC:datetime,
+            OperationType:string,
+            QueryText:string,
+            Table:string,
+            EvaluationContext:dynamic,
+            ServiceName:string,
+            CurrentActivityId:guid,
+            ["Session Id"]:guid,
+            ["Host Context Type"]:string,
+            ["Connection Ids"]:string,
+            ["Dataflow Id"]:guid,
+            ["Workspace Id"]:guid,
+            DatasetId:guid,
+            QueryType:string,
+            RootActivityId:guid,
+            SKU:string,
+            WorkspaceId:guid
+      )
+      | project GatewayObjectId
+            ,RequestId
+            ,DataSource=parse_json((replace_strings(dynamic_to_json(DataSource),dynamic(['["','"]','}","{','\\"']),dynamic(['[',']','},{','"']))))
+            ,QueryTrackingId
+            ,QueryExecutionStartTimeUTC
+            ,OperationType
+            ,QueryText
+            ,Table
+            ,EvaluationContext
+            ,ServiceName
+            ,CurrentActivityId
+            ,ItemId = iff(isempty(DatasetId),["Dataflow Id"],DatasetId)
+            ,QueryType
+            ,RootActivityId = iff(isempty(RootActivityId),["Session Id"],RootActivityId)
+            ,SKU
+            ,WorkspaceId = iff(isempty(WorkspaceId),['Workspace Id'],WorkspaceId)
+            ,HostContextType=["Host Context Type"]
+            ,ConnectionIds=["Connection Ids"]
+}
 .create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from QueryStartReport", skipvalidation = "true") parse_QueryStartReport() {
   ['GatewayReports-Raw']
     | where logType == "QueryStartReport"
@@ -314,12 +386,31 @@
     | extend Responding=tobool(iff(datetime_diff('minute',now(),lastStatusDate)>1 or isempty(lastStatusDate),false,true))
     | project nodeId,logDate,clusterId,clusterName,machine,cloudDatasourceRefresh,contactInformation,customConnectors,status,type,version,versionStatus,osName,osVersion,cores,logicalCores,memoryGb,lastStatusDate,Responding
 }
-.create-or-alter function with (folder = "Views", docstring = "Function to merge the Query Start and Execution", skipvalidation = "true") QueryExecutionUnified(DateSearch:datetime, DaysBack:int) {
-     let TimeFrom = datetime_add('day',-DaysBack,DateSearch);
-     let TimeToStart = datetime_add('hour',24,DateSearch);
-     let TimeToExecute = datetime_add('hour',30,DateSearch);
-     let QueryExecution = QueryExecutionReport | where QueryExecutionEndTimeUTC >= TimeFrom and QueryExecutionEndTimeUTC <= TimeToExecute;
-     let QueryStart = QueryStartReport | where QueryExecutionStartTimeUTC >= TimeFrom and QueryExecutionStartTimeUTC <= TimeToStart;
+.create-or-alter function with (folder = "Views", docstring = "Function to get Query Connections", skipvalidation = "true") QueryConnections(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic) {
+     let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
+     let TimeToStart = datetime_add('hour', 24, DateSearch);
+     let TimeToExecute = datetime_add('hour', 30, DateSearch);
+     let QueryExecution = QueryExecutionReport
+        | where QueryExecutionEndTimeUTC >= TimeFrom and QueryExecutionEndTimeUTC <= TimeToExecute
+        | where AllGateways or GatewayObjectId in(Gateways);
+     let QueryStart = QueryStartReport
+        | where QueryExecutionStartTimeUTC >= TimeFrom and QueryExecutionStartTimeUTC <= TimeToStart
+        | where AllGateways or GatewayObjectId in(Gateways);
+     QueryStart
+    | mv-expand todynamic(DataSource)
+    | extend DataSource=DataSource.kind, Path=DataSource.path
+    | project QueryTrackingId, DataSource=tostring(DataSource), Path=tostring(Path)
+ }
+.create-or-alter function with (folder = "Views", docstring = "Function to merge the Query Start and Execution", skipvalidation = "true") QueryExecutionUnified(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic) {
+     let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
+     let TimeToStart = datetime_add('hour', 24, DateSearch);
+     let TimeToExecute = datetime_add('hour', 30, DateSearch);
+     let QueryExecution = QueryExecutionReport
+        | where QueryExecutionEndTimeUTC >= TimeFrom and QueryExecutionEndTimeUTC <= TimeToExecute
+        | where AllGateways or GatewayObjectId in(Gateways);
+     let QueryStart = QueryStartReport
+        | where QueryExecutionStartTimeUTC >= TimeFrom and QueryExecutionStartTimeUTC <= TimeToStart
+        | where AllGateways or GatewayObjectId in(Gateways);
      QueryStart
     | join kind=leftouter QueryExecution
         on
@@ -365,90 +456,4 @@
         QueryExecutionStartTimeUTC desc,
         RequestId,
         QueryTrackingId
- }
-.create-or-alter function with (folder = "Parsers", skipvalidation = "true") parse_QueryStartReport_csv(T:(GatewayObjectId:guid,RequestId:guid,DataSource:dynamic,QueryTrackingId:guid,QueryExecutionStartTimeUTC:datetime,QueryType:string,QueryText:string,EvaluationContext:string)) {
-      T
-      | project GatewayObjectId,
-            RequestId,
-            DataSource=parse_json(DataSource),
-            QueryTrackingId,
-            QueryExecutionStartTimeUTC,
-            OperationType=QueryType,
-            QueryText = base64_decode_tostring(QueryText),
-            Table = iff(isempty(extract("__AS_Query__ = (.+),",1,base64_decode_tostring(QueryText))),extract("<ccon>(.+)</ccon>",1,base64_decode_tostring(QueryText)),extract("__AS_Query__ = (.+),",1,base64_decode_tostring(QueryText))),
-            EvaluationContext=parse_json(iff(isempty(parse_json(EvaluationContext)),'{"serviceTraceContexts":[{"serviceName":"Dataflow Gen1"}]}',EvaluationContext)),
-            ServiceTraceContexts=parse_json(iff(isempty(parse_json(EvaluationContext)),'{"serviceTraceContexts":[{"serviceName":"Dataflow Gen1"}]}',EvaluationContext)).serviceTraceContexts
-      | mv-expand ServiceTraceContexts
-      | extend ServiceName=ServiceTraceContexts.serviceName
-      | mv-expand ServiceTraceContexts.traceIds
-      | evaluate bag_unpack(ServiceTraceContexts_traceIds) : (
-            GatewayObjectId:guid,
-            RequestId:guid,
-            DataSource:dynamic,
-            QueryTrackingId:guid,
-            QueryExecutionStartTimeUTC:datetime,
-            OperationType:string,
-            QueryText:string,
-            Table:string,
-            EvaluationContext:dynamic,
-            ServiceTraceContexts:dynamic,
-            ServiceName:string,
-            key:string,
-            value:string
-      )
-      | evaluate pivot(key,take_any(value)) : (
-            GatewayObjectId:guid,
-            RequestId:guid,
-            DataSource:dynamic,
-            QueryTrackingId:guid,
-            QueryExecutionStartTimeUTC:datetime,
-            OperationType:string,
-            QueryText:string,
-            Table:string,
-            EvaluationContext:dynamic,
-            ServiceName:string,
-            CurrentActivityId:guid,
-            ["Session Id"]:guid,
-            ["Host Context Type"]:string,
-            ["Connection Ids"]:string,
-            ["Dataflow Id"]:guid,
-            ["Workspace Id"]:guid,
-            DatasetId:guid,
-            QueryType:string,
-            RootActivityId:guid,
-            SKU:string,
-            WorkspaceId:guid
-      )
-      | project GatewayObjectId
-            ,RequestId
-            ,DataSource=parse_json((replace_strings(dynamic_to_json(DataSource),dynamic(['["','"]','}","{','\\"']),dynamic(['[',']','},{','"']))))
-            ,QueryTrackingId
-            ,QueryExecutionStartTimeUTC
-            ,OperationType
-            ,QueryText
-            ,Table
-            ,EvaluationContext
-            ,ServiceName
-            ,CurrentActivityId
-            ,ItemId = iff(isempty(DatasetId),["Dataflow Id"],DatasetId)
-            ,QueryType
-            ,RootActivityId = iff(isempty(RootActivityId),["Session Id"],RootActivityId)
-            ,SKU
-            ,WorkspaceId = iff(isempty(WorkspaceId),['Workspace Id'],WorkspaceId)
-            ,HostContextType=["Host Context Type"]
-            ,ConnectionIds=["Connection Ids"]
-}
-.create-or-alter function with (folder = "Views", docstring = "Function to get Query Connections", skipvalidation = "true") QueryConnections(DateSearch: datetime, DaysBack: int) {
-     let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
-     let TimeToStart = datetime_add('hour', 24, DateSearch);
-     let TimeToExecute = datetime_add('hour', 30, DateSearch);
-     let QueryExecution = QueryExecutionReport
-        | where QueryExecutionEndTimeUTC >= TimeFrom and QueryExecutionEndTimeUTC <= TimeToExecute;
-     let QueryStart = QueryStartReport
-        | where QueryExecutionStartTimeUTC >= TimeFrom and QueryExecutionStartTimeUTC <= TimeToStart;
-     QueryStart
-    | distinct QueryTrackingId, DataSource=dynamic_to_json(DataSource)
-    | mv-expand todynamic(DataSource)
-    | extend DataSource=DataSource.kind, Path=DataSource.path
-    | distinct QueryTrackingId, DataSource=tostring(DataSource),Path=tostring(Path)
  }
