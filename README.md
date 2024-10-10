@@ -193,17 +193,18 @@ Selecting a Job in the list will allow you to do a "Drill through" to the Job De
 ### Job Details
 
 The details of the job, where you can find:
--Symmary of the queries related to the job
--How many queries has errors, if any
--Data source kinds summary
--Number of queries by node in the cluster for the job
--Service name related to the job (Power BI Datasets (Semantic Models), Power Query Online (Dataflows Gen2), Dataflows and Paginated Reports)
--Workspace ID and Item ID (Dataflows Gen1 don´t provide this information)
--Errors per query, in which node did it happen and the details of the error
--Summary of connections kind and the path
--Query details with the full information of the query
+- Symmary of the queries related to the job
+- How many queries has errors, if any
+- Data source kinds summary
+- Number of queries by node in the cluster for the job
+- Service name related to the job (Power BI Datasets (Semantic Models), Power Query Online (Dataflows Gen2), Dataflows and Paginated Reports)
+- Workspace ID and Item ID (Dataflows Gen1 don´t provide this information)
+- Errors per query, in which node did it happen and the details of the error
+- Summary of connections kind and the path
+- Query details with the full information of the query
 
-<img width="63" alt="image" src="https://github.com/user-attachments/assets/1e10cdc8-1175-48a8-b054-21bc73296aa9">
+<img width="1508" alt="image" src="https://github.com/user-attachments/assets/424fcc34-185f-41e6-9441-03519eebbf55">
+
 
 ### Queries
 
