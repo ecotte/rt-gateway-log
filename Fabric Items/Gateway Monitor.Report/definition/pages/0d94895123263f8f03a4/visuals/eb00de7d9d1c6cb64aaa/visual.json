@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "eb00de7d9d1c6cb64aaa",
   "position": {
-    "x": 572.693009118541,
-    "y": 92.59574468085107,
+    "x": 572.38493723849376,
+    "y": 92.384937238493734,
     "z": 1000,
-    "height": 280.12158054711244,
-    "width": 691.74468085106378,
+    "height": 280.50209205020923,
+    "width": 684.18410041841014,
     "tabOrder": 0
   },
   "visual": {
@@ -44,36 +44,6 @@
               "queryRef": "QueryExecutionUnified.NodeName",
               "nativeQueryRef": "NodeName",
               "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "ServiceName"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.ServiceName",
-              "nativeQueryRef": "ServiceName",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "OperationType"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.OperationType",
-              "nativeQueryRef": "OperationType",
-              "active": false
             }
           ]
         },
@@ -87,11 +57,11 @@
                       "Entity": "Execution Measures"
                     }
                   },
-                  "Property": "# Requests"
+                  "Property": "# Jobs"
                 }
               },
               "queryRef": "QueryExecutionUnified.# Requests",
-              "nativeQueryRef": "# Requests"
+              "nativeQueryRef": "# Jobs"
             },
             {
               "field": {
@@ -119,10 +89,88 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.# Queries (errors)",
-              "nativeQueryRef": "# Queries (errors)"
+              "nativeQueryRef": "# Errors",
+              "displayName": "# Errors"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries (Refresh)"
+                }
+              },
+              "queryRef": "Execution Measures.# Queries (Refresh)",
+              "nativeQueryRef": "# Refresh",
+              "displayName": "# Refresh"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries (DirectQuery)"
+                }
+              },
+              "queryRef": "Execution Measures.# Queries (DirectQuery)",
+              "nativeQueryRef": "# DQ",
+              "displayName": "# DQ"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Max. Query Duration (s)"
+                }
+              },
+              "queryRef": "Execution Measures.Max. Query Duration (s)",
+              "nativeQueryRef": "Max. (s)",
+              "displayName": "Max. (s)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Perc. 0.9 Query Duration (s)"
+                }
+              },
+              "queryRef": "Execution Measures.Perc. 0.75 Query Duration (s)",
+              "nativeQueryRef": "Perc. 0.9 Duration (s)",
+              "displayName": "Perc. 0.9 Duration (s)"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Execution Measures"
+                  }
+                },
+                "Property": "# Jobs"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "expansionStates": [
@@ -166,35 +214,43 @@
               }
             ],
             "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "QueryExecutionUnified.ServiceName"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "ServiceName"
-                }
-              }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "QueryExecutionUnified.OperationType"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'edcotte-Gateway'"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'edcotteVM1'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'edcotteVM2'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -446,6 +502,36 @@
             }
           }
         }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.87814207993151D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.NodeName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148.92676197906252D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.ClusterName"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -502,7 +588,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Logs'"
+                  "Value": "'Jobs by Gateway Cluster'"
                 }
               }
             },

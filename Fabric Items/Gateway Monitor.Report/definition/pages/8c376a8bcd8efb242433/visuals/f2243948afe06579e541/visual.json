@@ -129,7 +129,7 @@
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "25L"
+                  "Value": "50L"
                 }
               }
             },

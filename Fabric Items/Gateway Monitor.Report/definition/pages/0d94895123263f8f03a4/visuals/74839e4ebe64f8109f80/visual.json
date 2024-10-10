@@ -4,10 +4,10 @@
   "position": {
     "x": 410.26529507309147,
     "y": 92.86410395235518,
-    "z": 11000,
+    "z": 10000,
     "height": 71.380617217108835,
     "width": 129.59393611261507,
-    "tabOrder": 11000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,12 @@
                       "Entity": "Execution Measures"
                     }
                   },
-                  "Property": "Avg. Query Duration (s)"
+                  "Property": "Perc. 0.9 Query Duration (s)"
                 }
               },
               "queryRef": "QueryExecutionUnified.Avg. Request Duration (s)",
-              "nativeQueryRef": "Avg. Request Duration (s)"
+              "nativeQueryRef": "Perc. 0.9 Duration (s)",
+              "displayName": "Perc. 0.9 Duration (s)"
             }
           ]
         }
@@ -42,7 +43,7 @@
                     "Entity": "Execution Measures"
                   }
                 },
-                "Property": "Avg. Query Duration (s)"
+                "Property": "Perc. 0.9 Query Duration (s)"
               }
             },
             "direction": "Descending"
@@ -78,7 +79,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "9D"
                 }
               }
             }

@@ -25,11 +25,11 @@ table 'Execution Measures'
 		formatString: 0
 		lineageTag: 3bc836d4-b986-45e1-8c85-c8d1b0a66645
 
-	measure '# Requests' = DISTINCTCOUNT(QueryExecutionUnified[RootActivityId])
+	measure '# Jobs' = DISTINCTCOUNT(QueryExecutionUnified[RootActivityId])
 		formatString: 0
 		lineageTag: 078b61d1-3388-41ef-a419-1fd0a821181c
 
-	measure 'Avg. Query Duration (s)' = DIVIDE(AVERAGEX(QueryExecutionUnified, QueryExecutionUnified[QueryExecutionDuration_ms_]),1000)
+	measure 'Perc. 0.9 Query Duration (s)' = DIVIDE(PERCENTILE.INC(QueryExecutionUnified[QueryExecutionDuration_ms_],0.9),1000)
 		lineageTag: 42ca3c53-d66e-4940-bfab-a31a7126088a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -48,13 +48,21 @@ table 'Execution Measures'
 		formatString: 0
 		lineageTag: 1a104915-bc4c-40fe-aa5f-4b1afc1e3977
 
-	measure 'Query Avg. Execution - DirectQuery (ms)' = CALCULATE([Avg. Query Duration (s)], KEEPFILTERS(QueryExecutionUnified[OperationType] = "DirectQuery"))
+	measure 'Query Avg. Execution - DirectQuery (ms)' = CALCULATE([Perc. 0.9 Query Duration (s)], KEEPFILTERS(QueryExecutionUnified[OperationType] = "DirectQuery"))
 		lineageTag: a17045f4-fe60-4a29-8c95-d81cd5dab879
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Query Avg. Execution - Refresh (ms)' = CALCULATE([Avg. Query Duration (s)], KEEPFILTERS(QueryExecutionUnified[OperationType] = "Refresh"))
+	measure 'Query Avg. Execution - Refresh (ms)' = CALCULATE([Perc. 0.9 Query Duration (s)], KEEPFILTERS(QueryExecutionUnified[OperationType] = "Refresh"))
 		lineageTag: 485eebcb-e350-4dc8-a5b5-fbfe307208db
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Workspace ID' = MAX(QueryExecutionUnified[WorkspaceId])
+		lineageTag: 79bbef09-795d-4d51-9b1c-a9a11ee6d069
+
+	measure 'Max. Query Duration (s)' = DIVIDE(MAXX(QueryExecutionUnified, QueryExecutionUnified[QueryExecutionDuration_ms_]),1000)
+		lineageTag: f8ab922d-b806-40bd-aa67-407cebcb8430
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -69,4 +77,6 @@ table 'Execution Measures'
 				    #"Removed Columns"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

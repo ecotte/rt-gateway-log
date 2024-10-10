@@ -86,7 +86,7 @@
                       "Entity": "Execution Measures"
                     }
                   },
-                  "Property": "# Requests"
+                  "Property": "# Jobs"
                 }
               },
               "queryRef": "QueryExecutionUnified.# Requests",

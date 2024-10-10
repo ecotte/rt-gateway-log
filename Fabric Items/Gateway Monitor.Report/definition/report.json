@@ -26,6 +26,26 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "resourcePackages": [
@@ -62,6 +82,16 @@
         {
           "name": "gateway-monitoring-solution-ba6590567192205818.png",
           "path": "gateway-monitoring-solution-ba6590567192205818.png",
+          "type": "Image"
+        },
+        {
+          "name": "Mashup_profiles_Background89013578270551088898.png",
+          "path": "Mashup_profiles_Background89013578270551088898.png",
+          "type": "Image"
+        },
+        {
+          "name": "gateway-monitoring-solution-ba7587701345820725.png",
+          "path": "gateway-monitoring-solution-ba7587701345820725.png",
           "type": "Image"
         }
       ]

@@ -4,16 +4,16 @@
   "position": {
     "x": 875.37993920972644,
     "y": 481.6534954407295,
-    "z": 14001,
+    "z": 12000,
     "height": 207.75683890577508,
     "width": 374.27355623100306,
-    "tabOrder": 14001
+    "tabOrder": 12000
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -28,6 +28,7 @@
               },
               "queryRef": "QueryConnections.DataSource",
               "nativeQueryRef": "Kind",
+              "active": true,
               "displayName": "Kind"
             },
             {
@@ -42,8 +43,13 @@
                 }
               },
               "queryRef": "QueryConnections.Path",
-              "nativeQueryRef": "Path"
-            },
+              "nativeQueryRef": "Path",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Aggregation": {
@@ -60,8 +66,8 @@
                   "Function": 5
                 }
               },
-              "queryRef": "QueryConnections.QueryTrackingId",
-              "nativeQueryRef": "Count of QueryTrackingId",
+              "queryRef": "CountNonNull(QueryConnections.QueryTrackingId)",
+              "nativeQueryRef": "# Queries",
               "displayName": "# Queries"
             }
           ]
@@ -71,13 +77,18 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "QueryConnections"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "QueryConnections"
+                      }
+                    },
+                    "Property": "QueryTrackingId"
                   }
                 },
-                "Property": "DataSource"
+                "Function": 5
               }
             },
             "direction": "Descending"
@@ -85,6 +96,41 @@
         ]
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "QueryConnections.DataSource"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryConnections"
+                    }
+                  },
+                  "Property": "DataSource"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "QueryConnections.Path"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "values": [
         {
@@ -148,14 +194,8 @@
                   "Value": "8D"
                 }
               }
-            }
-          }
-        }
-      ],
-      "total": [
-        {
-          "properties": {
-            "totals": {
+            },
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -163,6 +203,11 @@
               }
             }
           }
+        }
+      ],
+      "total": [
+        {
+          "properties": {}
         }
       ],
       "grid": [
@@ -361,6 +406,73 @@
           "selector": {
             "metadata": "Gateway Logs.HelperId"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "216.38581236646428D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryConnections.Path"
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -425,6 +537,26 @@
               "expr": {
                 "Literal": {
                   "Value": "'ReportSection95e9960116cd42f74c67'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "showDrillDownLevelButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showDrillToggleButton": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

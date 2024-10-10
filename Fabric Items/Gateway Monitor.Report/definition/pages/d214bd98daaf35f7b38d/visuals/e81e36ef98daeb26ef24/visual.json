@@ -201,10 +201,33 @@
                 }
               },
               "queryRef": "Min(Gateway Node Info.Last Status Date)",
-              "nativeQueryRef": "Earliest Last Status Date"
+              "nativeQueryRef": "Last Status Date (UTC)",
+              "displayName": "Last Status Date (UTC)"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Gateway Node Info"
+                      }
+                    },
+                    "Property": "Last Status Date"
+                  }
+                },
+                "Function": 3
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "expansionStates": [

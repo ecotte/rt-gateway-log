@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "aa8288e8fd90135b9646",
   "position": {
-    "x": 30.756646216768917,
-    "y": 175.37832310838445,
-    "z": 12000,
-    "height": 134.80572597137015,
-    "width": 509.120654396728,
-    "tabOrder": 12000
+    "x": 30.79497907949791,
+    "y": 175.39748953974896,
+    "z": 11000,
+    "height": 134.56066945606696,
+    "width": 509.45606694560672,
+    "tabOrder": 11000
   },
   "visual": {
-    "visualType": "areaChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -42,39 +42,11 @@
                       "Entity": "Execution Measures"
                     }
                   },
-                  "Property": "# Activities"
+                  "Property": "# Jobs"
                 }
               },
-              "queryRef": "QueryExecutionUnified.# Request",
-              "nativeQueryRef": "# Activities"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "# Queries"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.# Queries",
-              "nativeQueryRef": "# Queries"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "# Queries (errors)"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.# Queries (errors)",
-              "nativeQueryRef": "# Queries (errors)"
+              "queryRef": "Execution Measures.# Jobs",
+              "nativeQueryRef": "# Jobs"
             }
           ]
         }
@@ -105,7 +77,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -125,6 +97,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'markerCircleDefault'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -208,6 +187,13 @@
                   }
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70D"
+                }
+              }
             }
           }
         }
@@ -218,7 +204,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -261,6 +247,13 @@
                   "Value": "8D"
                 }
               }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -271,7 +264,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -296,7 +289,14 @@
             "strokeWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
+                  "Value": "1D"
+                }
+              }
+            },
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -309,7 +309,21 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "showOnCategoryAxis": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showOnValueAxis": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -326,6 +340,98 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "seriesLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "seriesPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "trend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Trend line 1'"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "anomalyDetection": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Find anomalies 1'"
+                }
+              }
+            },
+            "transform": {
+              "algorithm": "SampleAndDetectAnomaly",
+              "parameters": [
+                {
+                  "Literal": {
+                    "Value": "0.7D"
+                  },
+                  "Name": "Sensitivity"
+                },
+                {
+                  "Literal": {
+                    "Value": "3500L"
+                  },
+                  "Name": "SampleSizePerSeries"
+                }
+              ]
+            },
+            "explainBy": {
+              "exprs": [],
+              "kind": "ExprList"
+            }
+          },
+          "selector": {
+            "metadata": "Execution Measures.# Jobs",
+            "id": "1"
           }
         }
       ]
@@ -378,7 +484,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Requests'"
+                  "Value": "'Jobs Over Time'"
                 }
               }
             },

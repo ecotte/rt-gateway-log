@@ -39,7 +39,7 @@ table QueryExecutionUnified
 
 	column QueryExecutionStartTimeUTC
 		dataType: dateTime
-		formatString: General Date
+		formatString: dd-mmm-yy hh:nn:ss AM/PM
 		sourceProviderType: datetimeoffset
 		lineageTag: 4043bc96-61f4-47ea-bd4a-e9883dddec01
 		summarizeBy: none
@@ -47,15 +47,19 @@ table QueryExecutionUnified
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
 	column QueryExecutionEndTimeUTC
 		dataType: dateTime
-		formatString: General Date
+		formatString: dd-mmm-yy hh:nn:ss AM/PM
 		sourceProviderType: datetimeoffset
 		lineageTag: 8fe346f3-9288-48f1-a58c-7b1d857a42bd
 		summarizeBy: none
 		sourceColumn: QueryExecutionEndTimeUTC
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column QueryExecutionDuration_ms_
 		dataType: int64
@@ -274,7 +278,7 @@ table QueryExecutionUnified
 		mode: directQuery
 		source = ```
 				let
-				    selectedGatewaysID = if Type.Is(Value.Type(SelectedGateways), List.Type) then 
+				    selectedGatewaysName = if Type.Is(Value.Type(SelectedGateways), List.Type) then 
 				      Text.Combine({"'", Text.Combine(SelectedGateways, "','") , "'"})
 				    else
 				      Text.Combine({"'" , SelectedGateways , "'"}),
@@ -283,9 +287,21 @@ table QueryExecutionUnified
 				      List.Contains(SelectedGateways, "__SelectAll__")
 				    else
 				      true,
+				    selectedClustersName = if Type.Is(Value.Type(SelectedClusters), List.Type) then 
+				      Text.Combine({"'", Text.Combine(SelectedClusters, "','") , "'"})
+				    else
+				      Text.Combine({"'" , SelectedClusters , "'"}),
+				
+				    selectAllClusters = if Type.Is(Value.Type(SelectedClusters), List.Type) then 
+				      List.Contains(SelectedClusters, "__SelectAll__")
+				    else
+				      true,
 				    Source = AzureDataExplorer.Contents(KustoURL, KustoDB, null, null),
 				    QueryExecutionUnified1 = Source{[Name="QueryExecutionUnified"]}[Data],
-				    #"Invoked FunctionQueryExecutionUnified1" = QueryExecutionUnified1(DateTime.ToText(DateToSearch, "yyyy-MM-dd"), DaysBack,selectAllGateways,Text.Combine({"[",selectedGatewaysID,"]"})),
+				    #"Invoked FunctionQueryExecutionUnified1" = QueryExecutionUnified1(DateTime.ToText(DateToSearch, "yyyy-MM-dd"),DaysBack
+				        ,selectAllGateways,Text.Combine({"[",selectedGatewaysName,"]"})
+				        ,selectAllClusters,Text.Combine({"[",selectedClustersName,"]"})
+				        ),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Invoked FunctionQueryExecutionUnified1",{{"DataSource", type text}})
 				in
 				    #"Changed Type"

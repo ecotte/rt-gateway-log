@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.2.0/schema.json",
+  "name": "46b4ea6b7cc0ff499882",
+  "displayName": "System Counters",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

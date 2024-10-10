@@ -23,12 +23,12 @@
                       "Entity": "Execution Measures"
                     }
                   },
-                  "Property": "# Requests"
+                  "Property": "# Jobs"
                 }
               },
               "queryRef": "QueryExecutionUnified.# Requests",
-              "nativeQueryRef": "Requests",
-              "displayName": "Requests"
+              "nativeQueryRef": "Jobs",
+              "displayName": "Jobs"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "Execution Measures"
                   }
                 },
-                "Property": "# Requests"
+                "Property": "# Jobs"
               }
             },
             "direction": "Descending"

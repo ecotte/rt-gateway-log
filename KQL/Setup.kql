@@ -386,31 +386,33 @@
     | extend Responding=tobool(iff(datetime_diff('minute',now(),lastStatusDate)>1 or isempty(lastStatusDate),false,true))
     | project nodeId,logDate,clusterId,clusterName,machine,cloudDatasourceRefresh,contactInformation,customConnectors,status,type,version,versionStatus,osName,osVersion,cores,logicalCores,memoryGb,lastStatusDate,Responding
 }
-.create-or-alter function with (folder = "Views", docstring = "Function to get Query Connections", skipvalidation = "true") QueryConnections(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic) {
+.create-or-alter function with (folder = "Views", docstring = "Function to get Query Connections", skipvalidation = "true") QueryConnections(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
      let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
      let TimeToStart = datetime_add('hour', 24, DateSearch);
      let TimeToExecute = datetime_add('hour', 30, DateSearch);
+     let GatewaysToSeach = GatewayNodeInfo | where AllGateways or machine in(Gateways) | where AllClusters or clusterName in(Clusters) | project nodeId;
      let QueryExecution = QueryExecutionReport
         | where QueryExecutionEndTimeUTC >= TimeFrom and QueryExecutionEndTimeUTC <= TimeToExecute
-        | where AllGateways or GatewayObjectId in(Gateways);
+        | where GatewayObjectId in(GatewaysToSeach);
      let QueryStart = QueryStartReport
         | where QueryExecutionStartTimeUTC >= TimeFrom and QueryExecutionStartTimeUTC <= TimeToStart
-        | where AllGateways or GatewayObjectId in(Gateways);
+        | where GatewayObjectId in(GatewaysToSeach);
      QueryStart
     | mv-expand todynamic(DataSource)
     | extend DataSource=DataSource.kind, Path=DataSource.path
     | project QueryTrackingId, DataSource=tostring(DataSource), Path=tostring(Path)
  }
-.create-or-alter function with (folder = "Views", docstring = "Function to merge the Query Start and Execution", skipvalidation = "true") QueryExecutionUnified(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic) {
+.create-or-alter function with (folder = "Views", docstring = "Function to merge the Query Start and Execution", skipvalidation = "true") QueryExecutionUnified(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
      let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
      let TimeToStart = datetime_add('hour', 24, DateSearch);
-     let TimeToExecute = datetime_add('hour', 30, DateSearch);
+     let TimeToExecute = datetime_add('hour', 36, DateSearch);
+     let GatewaysToSeach = GatewayNodeInfo | where AllGateways or machine in(Gateways) | where AllClusters or clusterName in(Clusters) | project nodeId;
      let QueryExecution = QueryExecutionReport
         | where QueryExecutionEndTimeUTC >= TimeFrom and QueryExecutionEndTimeUTC <= TimeToExecute
-        | where AllGateways or GatewayObjectId in(Gateways);
+        | where GatewayObjectId in(GatewaysToSeach);
      let QueryStart = QueryStartReport
         | where QueryExecutionStartTimeUTC >= TimeFrom and QueryExecutionStartTimeUTC <= TimeToStart
-        | where AllGateways or GatewayObjectId in(Gateways);
+        | where GatewayObjectId in(GatewaysToSeach);
      QueryStart
     | join kind=leftouter QueryExecution
         on

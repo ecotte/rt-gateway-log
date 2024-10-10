@@ -10,7 +10,7 @@ queryGroup Parameters
 
 	annotation PBI_QueryGroupOrder = 0
 
-annotation PBI_QueryOrder = ["Gateway Node Info","KustoURL","KustoDB","CalendarFrom","Calendar","Period","DaysBack","DateToSearch","QueryExecutionUnified","QueryConnections","Execution Measures","SelectedGateways"]
+annotation PBI_QueryOrder = ["Gateway Node Info","KustoURL","KustoDB","CalendarFrom","Calendar","Period","DaysBack","DateToSearch","QueryExecutionUnified","QueryConnections","Execution Measures","SelectedGateways","SelectedClusters"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 

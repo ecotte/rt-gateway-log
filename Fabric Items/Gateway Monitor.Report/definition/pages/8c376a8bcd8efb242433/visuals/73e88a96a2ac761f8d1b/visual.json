@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "73e88a96a2ac761f8d1b",
   "position": {
-    "x": 33.458966565349542,
-    "y": 481.6534954407295,
+    "x": 33.440666577072975,
+    "y": 481.79330735116247,
     "z": 2000,
-    "height": 207.75683890577508,
-    "width": 831.02735562310033,
+    "height": 188.25856739685526,
+    "width": 831.06249160059122,
     "tabOrder": 0
   },
   "visual": {
@@ -32,8 +32,8 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.QueryExecutionStartTimeUTC",
-              "nativeQueryRef": "Earliest QueryExecutionStartTimeUTC",
-              "displayName": "Start"
+              "nativeQueryRef": "Start (UTC)",
+              "displayName": "Start (UTC)"
             },
             {
               "field": {
@@ -52,8 +52,8 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.QueryExecutionEndTimeUTC",
-              "nativeQueryRef": "Latest QueryExecutionEndTimeUTC",
-              "displayName": "End"
+              "nativeQueryRef": "End (UTC)",
+              "displayName": "End (UTC)"
             },
             {
               "field": {
@@ -85,62 +85,87 @@
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Execution Measures"
+                      "Entity": "QueryExecutionUnified"
                     }
                   },
-                  "Property": "# Queries"
+                  "Property": "OperationType"
                 }
               },
-              "queryRef": "QueryExecutionUnified.# Queries",
-              "nativeQueryRef": "# Queries"
+              "queryRef": "QueryExecutionUnified.OperationType",
+              "nativeQueryRef": "OperationType"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Execution Measures"
+                      "Entity": "QueryExecutionUnified"
                     }
                   },
-                  "Property": "# Queries (Refresh)"
+                  "Property": "Success"
                 }
               },
-              "queryRef": "QueryExecutionUnified.# Queries (Refresh)",
-              "nativeQueryRef": "# Refresh",
-              "displayName": "# Refresh"
+              "queryRef": "QueryExecutionUnified.Success",
+              "nativeQueryRef": "Success"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Execution Measures"
+                      "Entity": "QueryExecutionUnified"
                     }
                   },
-                  "Property": "# Queries (DirectQuery)"
+                  "Property": "ClusterName"
                 }
               },
-              "queryRef": "QueryExecutionUnified.# Queries (DirectQuery)",
-              "nativeQueryRef": "# DirectQuery",
-              "displayName": "# DirectQuery"
+              "queryRef": "QueryExecutionUnified.ClusterName",
+              "nativeQueryRef": "ClusterName"
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Execution Measures"
+                      "Entity": "QueryExecutionUnified"
                     }
                   },
-                  "Property": "# Queries (errors)"
+                  "Property": "NodeName"
                 }
               },
-              "queryRef": "QueryExecutionUnified.# Queries (errors)",
-              "nativeQueryRef": "# Errors",
-              "displayName": "# Errors"
+              "queryRef": "QueryExecutionUnified.NodeName",
+              "nativeQueryRef": "NodeName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "WorkspaceId"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.WorkspaceId",
+              "nativeQueryRef": "WorkspaceId"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "ItemId"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.ItemId",
+              "nativeQueryRef": "ItemId"
             },
             {
               "field": {
@@ -155,6 +180,48 @@
               },
               "queryRef": "QueryExecutionUnified.RootActivityId",
               "nativeQueryRef": "RootActivityId"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "QueryTrackingId"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.QueryTrackingId",
+              "nativeQueryRef": "QueryTrackingId"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "DataSource"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.DataSource",
+              "nativeQueryRef": "DataSource"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "ErrorMessage"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.ErrorMessage",
+              "nativeQueryRef": "ErrorMessage"
             }
           ],
           "showAll": true
@@ -250,26 +317,13 @@
           }
         },
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "QueryExecutionUnified.# Queries (errors)"
-          }
-        },
-        {
           "properties": {
             "icon": {
               "kind": "Icon",
               "layout": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Before'"
+                    "Value": "'IconOnly'"
                   }
                 }
               },
@@ -286,52 +340,37 @@
                     "Cases": [
                       {
                         "Condition": {
-                          "And": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
                             "Left": {
-                              "Comparison": {
-                                "ComparisonKind": 2,
-                                "Left": {
-                                  "Measure": {
+                              "Aggregation": {
+                                "Expression": {
+                                  "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "Execution Measures"
+                                        "Entity": "QueryExecutionUnified"
                                       }
                                     },
-                                    "Property": "# Queries (errors)"
+                                    "Property": "Success"
                                   }
                                 },
-                                "Right": {
-                                  "Literal": {
-                                    "Value": "0D"
-                                  }
-                                }
+                                "Function": 3
                               }
                             },
                             "Right": {
-                              "Comparison": {
-                                "ComparisonKind": 3,
-                                "Left": {
-                                  "Measure": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Entity": "Execution Measures"
-                                      }
-                                    },
-                                    "Property": "# Queries (errors)"
-                                  }
-                                },
-                                "Right": {
-                                  "Literal": {
-                                    "Value": "10000D"
-                                  }
-                                }
+                              "Literal": {
+                                "Value": "''"
                               }
                             }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 11
                           }
                         },
                         "Value": {
                           "Literal": {
-                            "Value": "'SymbolLow'"
+                            "Value": "'Circle75'"
                           }
                         }
                       },
@@ -340,25 +379,70 @@
                           "Comparison": {
                             "ComparisonKind": 0,
                             "Left": {
-                              "Measure": {
+                              "Aggregation": {
                                 "Expression": {
-                                  "SourceRef": {
-                                    "Entity": "Execution Measures"
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "QueryExecutionUnified"
+                                      }
+                                    },
+                                    "Property": "Success"
                                   }
                                 },
-                                "Property": "# Queries (errors)"
+                                "Function": 3
                               }
                             },
                             "Right": {
                               "Literal": {
-                                "Value": "null"
+                                "Value": "'Y'"
                               }
                             }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
                           }
                         },
                         "Value": {
                           "Literal": {
                             "Value": "'SymbolHigh'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Aggregation": {
+                                "Expression": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "QueryExecutionUnified"
+                                      }
+                                    },
+                                    "Property": "Success"
+                                  }
+                                },
+                                "Function": 3
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'N'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolLow'"
                           }
                         }
                       }
@@ -376,7 +460,7 @@
                 }
               }
             ],
-            "metadata": "QueryExecutionUnified.# Queries"
+            "metadata": "QueryExecutionUnified.Success"
           }
         }
       ],
@@ -588,6 +672,22 @@
           },
           "selector": {
             "metadata": "Gateway Logs.HelperId"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.Success"
           }
         }
       ]

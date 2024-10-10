@@ -396,14 +396,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Query Execution (ms)'"
+                  "Value": "'# Queries by Node'"
                 }
               }
             },
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }

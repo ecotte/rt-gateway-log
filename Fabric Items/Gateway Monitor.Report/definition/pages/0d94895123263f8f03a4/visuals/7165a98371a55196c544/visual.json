@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "7165a98371a55196c544",
   "position": {
-    "x": 1063.4210654499993,
+    "x": 1057.7405857740587,
     "y": 0,
-    "z": 12001,
-    "height": 82.4666742437773,
-    "width": 200.84625501307053,
-    "tabOrder": 12001
+    "z": 12000,
+    "height": 82.343096234309627,
+    "width": 206.19246861924688,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "slicer",
@@ -23,11 +23,11 @@
                       "Entity": "Gateway Node Info"
                     }
                   },
-                  "Property": "Gateway ID"
+                  "Property": "Node Name"
                 }
               },
-              "queryRef": "Gateway Node Info.Gateway ID",
-              "nativeQueryRef": "Gateway ID",
+              "queryRef": "Gateway Node Info.Node Name",
+              "nativeQueryRef": "Node Name",
               "active": true
             }
           ]

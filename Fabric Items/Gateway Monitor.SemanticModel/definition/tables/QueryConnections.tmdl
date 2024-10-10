@@ -32,7 +32,7 @@ table QueryConnections
 		mode: directQuery
 		source = ```
 				let
-				    selectedGatewaysID = if Type.Is(Value.Type(SelectedGateways), List.Type) then 
+				    selectedGatewaysName = if Type.Is(Value.Type(SelectedGateways), List.Type) then 
 				      Text.Combine({"'", Text.Combine(SelectedGateways, "','") , "'"})
 				    else
 				      Text.Combine({"'" , SelectedGateways , "'"}),
@@ -41,9 +41,21 @@ table QueryConnections
 				      List.Contains(SelectedGateways, "__SelectAll__")
 				    else
 				      true,
+				    selectedClustersName = if Type.Is(Value.Type(SelectedClusters), List.Type) then 
+				      Text.Combine({"'", Text.Combine(SelectedClusters, "','") , "'"})
+				    else
+				      Text.Combine({"'" , SelectedClusters , "'"}),
+				
+				    selectAllClusters = if Type.Is(Value.Type(SelectedClusters), List.Type) then 
+				      List.Contains(SelectedClusters, "__SelectAll__")
+				    else
+				      true,
 				    Source = AzureDataExplorer.Contents(KustoURL, KustoDB, null, null),
 				    QueryConnections1 = Source{[Name="QueryConnections"]}[Data],
-				    #"Invoked FunctionQueryConnections1" = QueryConnections1(DateTime.ToText(DateToSearch, "yyyy-MM-dd"), DaysBack,selectAllGateways,Text.Combine({"[",selectedGatewaysID,"]"}))
+				    #"Invoked FunctionQueryConnections1" = QueryConnections1(DateTime.ToText(DateToSearch, "yyyy-MM-dd"), DaysBack
+				        ,selectAllGateways,Text.Combine({"[",selectedGatewaysName,"]"})
+				        ,selectAllClusters,Text.Combine({"[",selectedClustersName,"]"})
+				    )
 				in
 				    #"Invoked FunctionQueryConnections1"
 				```

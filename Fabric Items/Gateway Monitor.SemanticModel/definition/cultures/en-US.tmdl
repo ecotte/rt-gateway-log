@@ -104,6 +104,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Daily": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -111,13 +121,13 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Execution Measures",
-			          "ConceptualProperty": "Avg. Query Duration (s)"
+			          "ConceptualProperty": "Perc. 0.9 Query Duration (s)"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Avg Query Duration (s)": {
+			          "Perc. 0.9 Duration (s)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -135,19 +145,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "QueryExecutionStartTimeUTC"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Start": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "queryexecutionunified.queryexecutionendtimeutc": {
 			      "Definition": {
@@ -156,19 +154,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "QueryExecutionEndTimeUTC"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "End": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "queryexecutionunified.queryexecutionduration_ms_": {
 			      "Definition": {
@@ -177,19 +163,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "QueryExecutionDuration_ms_"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "QueryExecutionDuration (ms)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "queryexecutionunified.datareadingandserializationduration_ms_": {
 			      "Definition": {
@@ -198,19 +172,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "DataReadingAndSerializationDuration_ms_"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "DataReadingAndSerializationDuration (ms)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "queries.requests_queries": {
 			      "Definition": {
@@ -318,13 +280,13 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Execution Measures",
-			          "ConceptualProperty": "# Requests"
+			          "ConceptualProperty": "# Jobs"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Requests": {
+			          "Jobs": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -437,6 +399,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Errors": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -471,6 +443,16 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
+			          "# DQ": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
 			          "# DirectQuery": {
 			            "State": "Suggested",
 			            "Source": {
@@ -502,6 +484,100 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Kind": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Source Kind": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "queryexecutionunified.workspaceid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualProperty": "WorkspaceId"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Workspace": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "queryexecutionunified.itemid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualProperty": "ItemId"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Item": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "system_counters.max_counter_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "System Counters",
+			          "ConceptualProperty": "Max Counter Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Max": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "execution_measures.max__query_duration_s": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Execution Measures",
+			          "ConceptualProperty": "Max. Query Duration (s)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Max. (s)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

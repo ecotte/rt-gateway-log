@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "7ad885a11d8351c58f0b",
   "position": {
-    "x": 26.564718732932825,
-    "y": 310.38776624795196,
+    "x": 26.628678941002551,
+    "y": 310.87434484612282,
     "z": 0,
-    "height": 376.10049153468049,
-    "width": 522.9055161114145,
+    "height": 352.36554226582444,
+    "width": 513.376159118398,
     "tabOrder": 1000
   },
   "visual": {
@@ -15,91 +15,6 @@
       "queryState": {
         "Values": {
           "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "RootActivityId"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.RootActivityId",
-              "nativeQueryRef": "RootActivityId"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "# Nodes"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.# Nodes",
-              "nativeQueryRef": "# Nodes"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "# Queries"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.# Queries",
-              "nativeQueryRef": "# Queries"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "# Queries (errors)"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.# Queries (errors)",
-              "nativeQueryRef": "# Queries (errors)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "Avg. Query Duration (s)"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.Avg. Request Duration (s)",
-              "nativeQueryRef": "Avg Query Duration (s)",
-              "displayName": "Avg Query Duration (s)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "Duration (s)"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.Duration (s)",
-              "nativeQueryRef": "Duration (s)"
-            },
             {
               "field": {
                 "Aggregation": {
@@ -117,8 +32,8 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.QueryExecutionStartTimeUTC",
-              "nativeQueryRef": "Start",
-              "displayName": "Start"
+              "nativeQueryRef": "Start (UTC)",
+              "displayName": "Start (UTC)"
             },
             {
               "field": {
@@ -137,8 +52,65 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.QueryExecutionEndTimeUTC",
-              "nativeQueryRef": "End",
-              "displayName": "End"
+              "nativeQueryRef": "End (UTC)",
+              "displayName": "End (UTC)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "ServiceName"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.ServiceName",
+              "nativeQueryRef": "ServiceName"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries (errors)"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.# Queries (errors)",
+              "nativeQueryRef": "# Errors",
+              "displayName": "# Errors"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Duration (s)"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.Duration (s)",
+              "nativeQueryRef": "Duration (s)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QueryExecutionUnified"
+                    }
+                  },
+                  "Property": "RootActivityId"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.RootActivityId",
+              "nativeQueryRef": "RootActivityId"
             }
           ]
         }
@@ -292,6 +264,34 @@
           },
           "selector": {
             "metadata": "Gateway Logs.HelperId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.46788998910473D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.QueryExecutionStartTimeUTC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.RootActivityId"
           }
         }
       ],
@@ -502,6 +502,150 @@
               }
             }
           }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "# Queries (errors)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolHigh'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Execution Measures"
+                                      }
+                                    },
+                                    "Property": "# Queries (errors)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Execution Measures"
+                                      }
+                                    },
+                                    "Property": "# Queries (errors)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "10000D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "# Queries (errors)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "QueryExecutionUnified.# Queries (errors)"
+          }
         }
       ],
       "columnFormatting": [
@@ -522,6 +666,34 @@
           },
           "selector": {
             "metadata": "Gateway Queries.Success"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.QueryExecutionStartTimeUTC"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.# Queries (errors)"
           }
         }
       ],
@@ -593,7 +765,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Requests'"
+                  "Value": "'Jobs'"
                 }
               }
             },

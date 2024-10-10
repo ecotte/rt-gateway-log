@@ -8,14 +8,6 @@ table 'Gateway Node Info'
 		summarizeBy: none
 		sourceColumn: Gateway ID
 
-		extendedProperty ParameterMetadata =
-				{
-				  "version": 2,
-				  "kind": 1,
-				  "supportsMultipleValues": true,
-				  "selectAllValue": "__SelectAll__"
-				}
-
 		annotation SummarizationSetBy = Automatic
 
 	column 'Last Information Date'
@@ -44,6 +36,14 @@ table 'Gateway Node Info'
 		summarizeBy: none
 		sourceColumn: Cluster Name
 
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 2,
+				  "kind": 1,
+				  "supportsMultipleValues": true,
+				  "selectAllValue": "__SelectAll__"
+				}
+
 		annotation SummarizationSetBy = Automatic
 
 	column 'Node Name'
@@ -52,6 +52,14 @@ table 'Gateway Node Info'
 		lineageTag: bdb7a3f0-2824-4b6c-82c2-b797da77fcba
 		summarizeBy: none
 		sourceColumn: Node Name
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 2,
+				  "kind": 1,
+				  "supportsMultipleValues": true,
+				  "selectAllValue": "__SelectAll__"
+				}
 
 		annotation SummarizationSetBy = Automatic
 

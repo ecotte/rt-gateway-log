@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+  "name": "36c223bea28bbf6c15ae",
+  "position": {
+    "x": 41.179624664879356,
+    "y": 538.08042895442361,
+    "z": 5000,
+    "height": 148.2466487935657,
+    "width": 582.69168900804289,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Performance counters are collected by the gateway in an aggregation window (by default 5min) on the gateway and mashup container windows processes."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Learn more in the following links: "
+                  },
+                  {
+                    "value": "link1",
+                    "textStyle": {},
+                    "url": "https://learn.microsoft.com/en-us/data-integration/gateway/service-gateway-performance"
+                  },
+                  {
+                    "value": ", "
+                  },
+                  {
+                    "value": "link2",
+                    "textStyle": {},
+                    "url": "https://medium.com/microsoftazure/on-premises-data-gateway-monitoring-series-part-2-cpu-counters-99631a0a5b17"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
