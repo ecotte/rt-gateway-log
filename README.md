@@ -75,8 +75,7 @@ First create the Eventhouse with "New Item -> Eventhouse"
 After creating the Eventhouse, we are going to run the content of the script "[KQL\Setup.kql](https://github.com/ecotte/rt-gateway-log/blob/main/KQL/Setup.kql)" and create the tables and policies.
 
 The data flow is as follow:
-![image](https://github.com/user-attachments/assets/92be7e34-f8f1-4434-86e3-a25638368c1f)
-
+<img width="799" alt="image" src="https://github.com/user-attachments/assets/97047ce7-5b47-4a06-a763-f750e8cfff9e">
 
 ## Script deployment and setup in the gateway nodes
 
