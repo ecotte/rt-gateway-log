@@ -1,3 +1,4 @@
+/// URL od the Eventhouse Cluster
 expression KustoURL = "https://trd-98c7r0ptpb3uh404k9.z6.kusto.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: 69a90fe3-c582-4c20-a98b-0b4930d995c4
 	queryGroup: Parameters
@@ -6,6 +7,7 @@ expression KustoURL = "https://trd-98c7r0ptpb3uh404k9.z6.kusto.fabric.microsoft.
 
 	annotation PBI_ResultType = Text
 
+/// Name of the KQL DB
 expression KustoDB = "Gateway Monitoring" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: add3430a-6ad1-4ba5-a95a-7fe358e5dcb6
 	queryGroup: Parameters
@@ -14,7 +16,7 @@ expression KustoDB = "Gateway Monitoring" meta [IsParameterQuery=true, Type="Tex
 
 	annotation PBI_ResultType = Text
 
-expression DaysBack = 7 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+expression DaysBack = 7 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=false]
 	lineageTag: f27daff9-939a-4920-b526-c1094ddcef00
 	queryGroup: Parameters
 	parameterValuesColumn: Period.'Days Back'
@@ -23,7 +25,7 @@ expression DaysBack = 7 meta [IsParameterQuery=true, Type="Number", IsParameterQ
 
 	annotation PBI_ResultType = Number
 
-expression DateToSearch = #datetime(2024, 10, 6, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+expression DateToSearch = #datetime(2024, 10, 6, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=false]
 	lineageTag: 5b4a36ca-20f6-410c-9dae-33c164f5c0e1
 	queryGroup: Parameters
 	parameterValuesColumn: Calendar.Date
@@ -32,7 +34,7 @@ expression DateToSearch = #datetime(2024, 10, 6, 0, 0, 0) meta [IsParameterQuery
 
 	annotation PBI_ResultType = DateTime
 
-expression SelectedGateways = "__SelectAll__" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+expression SelectedGateways = "__SelectAll__" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=false]
 	lineageTag: b01fd9ab-b809-4514-9708-c7c91f887853
 	queryGroup: Parameters
 	parameterValuesColumn: 'Gateway Node Info'.'Node Name'
@@ -41,7 +43,7 @@ expression SelectedGateways = "__SelectAll__" meta [IsParameterQuery=true, Type=
 
 	annotation PBI_ResultType = Text
 
-expression SelectedClusters = "__SelectAll__" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+expression SelectedClusters = "__SelectAll__" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=false]
 	lineageTag: f2fadb58-bb52-4861-af2c-785979ea0fad
 	queryGroup: Parameters
 	parameterValuesColumn: 'Gateway Node Info'.'Cluster Name'

@@ -95,16 +95,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
-			        },
-			        {
-			          "Daily": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -565,10 +555,19 @@ cultureInfo en-US
 			          "ConceptualProperty": "Max"
 			        }
 			      },
+			      "State": "Generated"
+			    },
+			    "system_counters.avg__counter_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "System Counters",
+			          "ConceptualProperty": "Avg. Counter Value"
+			        }
+			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Max": {
+			          "Average": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
