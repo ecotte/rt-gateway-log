@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-  "name": "74d5942c78f1bb65db02",
+  "name": "c39e322a923f549e465b",
   "position": {
-    "x": 332.86863270777479,
-    "y": 90.595174262734588,
-    "z": 6000,
-    "height": 41.865951742627345,
-    "width": 254.62734584450402,
-    "tabOrder": 6000
+    "x": 510.82568807339447,
+    "y": 90.275229357798167,
+    "z": 10000,
+    "height": 35.963302752293579,
+    "width": 256.8807339449541,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "slicer",
@@ -26,7 +26,8 @@
                   "Property": "Param - Counters Measure"
                 }
               },
-              "queryRef": "Param - Counters Measure.Param - Counters Measure",
+              "queryRef": "Parameter.Parameter",
+              "nativeQueryRef": "Param - Counters Measure",
               "active": true
             }
           ]
@@ -66,7 +67,7 @@
                                   "Source": "p"
                                 }
                               },
-                              "Property": "Param - Counters Measure Fields"
+                              "Property": "Param - Counter Axis Fields"
                             }
                           }
                         ],
@@ -74,7 +75,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''System Counters''[Max Counter Value]'"
+                                "Value": "'''System Counters''[Avg. Counter Value]'"
                               }
                             }
                           ]
@@ -102,7 +103,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''System Counters''[Max Counter Value]'"
+                                      "Value": "'''System Counters''[Avg. Counter Value]'"
                                     }
                                   }
                                 ]
@@ -118,7 +119,7 @@
                                       "Entity": "Param - Counters Measure"
                                     }
                                   },
-                                  "Property": "Param - Counters Measure Fields"
+                                  "Property": "Param - Counter Axis Fields"
                                 }
                               }
                             }
@@ -126,7 +127,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Max"
+                            "0": "Average"
                           }
                         ]
                       }
@@ -151,13 +152,13 @@
           }
         }
       ],
-      "header": [
+      "selection": [
         {
           "properties": {
-            "show": {
+            "strictSingleSelect": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }

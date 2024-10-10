@@ -211,18 +211,26 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Column": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Gateway Node Info"
-                      }
-                    },
-                    "Property": "Last Status Date"
+                  "SourceRef": {
+                    "Entity": "Gateway Node Info"
                   }
                 },
-                "Function": 3
+                "Property": "Cluster Name"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Gateway Node Info"
+                  }
+                },
+                "Property": "Node Name"
               }
             },
             "direction": "Ascending"

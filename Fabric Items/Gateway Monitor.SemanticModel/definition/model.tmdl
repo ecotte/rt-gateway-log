@@ -10,28 +10,26 @@ queryGroup Parameters
 
 	annotation PBI_QueryGroupOrder = 0
 
-annotation PBI_QueryOrder = ["Gateway Node Info","KustoURL","KustoDB","CalendarFrom","Calendar","Period","DaysBack","DateToSearch","QueryExecutionUnified","QueryConnections","Execution Measures","SelectedGateways","SelectedClusters"]
+annotation PBI_QueryOrder = ["Gateway Node Info","KustoURL","KustoDB","Calendar","Period","DaysBack","DateToSearch","Query Execution","Query Connections","Execution Measures","SelectedGateways","SelectedClusters","System Counters"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.136.1202.0 (24.09)
+annotation PBIDesktopVersion = 2.136.1478.0 (24.09)
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table 'Gateway Node Info'
-ref table CalendarFrom
 ref table DateTableTemplate_1248dd8b-d642-4c21-8f3c-638ea14b43a2
-ref table LocalDateTable_f4451b8c-4924-4b93-9f76-e84b0912ddd2
-ref table LocalDateTable_56f31ebd-6495-479f-b1bd-d193ef29deb7
-ref table LocalDateTable_c3d5f007-f72a-41a7-945f-4aaad100ab78
 ref table Calendar
 ref table LocalDateTable_806bfee6-7282-4e7c-bc5c-1f501d4227f2
 ref table LocalDateTable_758ae1f6-73ea-4834-a83d-5f63daa0003d
 ref table LocalDateTable_21295484-02b4-41dc-a118-481a9522f4e8
 ref table Period
-ref table QueryExecutionUnified
-ref table QueryConnections
+ref table 'Query Execution'
+ref table 'Query Connections'
 ref table 'Execution Measures'
+ref table 'System Counters'
+ref table 'Param - Counters Measure'
 
 ref cultureInfo en-US
 

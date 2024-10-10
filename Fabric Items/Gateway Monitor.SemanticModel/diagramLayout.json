@@ -23,18 +23,6 @@
         },
         {
           "location": {
-            "x": 284,
-            "y": 0
-          },
-          "nodeIndex": "CalendarFrom",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 5
-        },
-        {
-          "location": {
             "x": 568,
             "y": 0
           },
@@ -60,24 +48,34 @@
         },
         {
           "location": {
-            "x": 398,
-            "y": 470
+            "x": 1136,
+            "y": 333
           },
-          "nodeIndex": "QueryExecutionUnified",
-          "nodeLineageTag": "53f0d509-533f-41a8-abf4-a67565034eba",
+          "nodeIndex": "Execution Measures",
           "size": {
-            "height": 300,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 237
+          },
+          "nodeIndex": "System Counters",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
         },
         {
           "location": {
             "x": 772,
             "y": 507
           },
-          "nodeIndex": "QueryConnections",
-          "nodeLineageTag": "716d7f06-3dbc-4559-9bbb-16469fcaa3a6",
+          "nodeIndex": "Query Connections",
           "size": {
             "height": 128,
             "width": 234
@@ -86,12 +84,24 @@
         },
         {
           "location": {
-            "x": 1136,
-            "y": 333
+            "x": 398,
+            "y": 470
           },
-          "nodeIndex": "Execution Measures",
+          "nodeIndex": "Query Execution",
           "size": {
-            "height": 104,
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 309
+          },
+          "nodeIndex": "Param - Counters Measure",
+          "size": {
+            "height": 152,
             "width": 234
           },
           "zIndex": 0

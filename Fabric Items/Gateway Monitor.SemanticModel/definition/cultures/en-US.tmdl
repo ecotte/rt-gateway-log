@@ -77,15 +77,6 @@ cultureInfo en-US
 			      },
 			      "State": "Generated"
 			    },
-			    "calendarfrom.date": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "CalendarFrom",
-			          "ConceptualProperty": "Date"
-			        }
-			      },
-			      "State": "Generated"
-			    },
 			    "calendarto.date": {
 			      "Definition": {
 			        "Binding": {
@@ -141,7 +132,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queryexecutionstarttimeutc": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "QueryExecutionStartTimeUTC"
 			        }
 			      },
@@ -150,7 +141,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queryexecutionendtimeutc": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "QueryExecutionEndTimeUTC"
 			        }
 			      },
@@ -159,7 +150,7 @@ cultureInfo en-US
 			    "queryexecutionunified.queryexecutionduration_ms_": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "QueryExecutionDuration_ms_"
 			        }
 			      },
@@ -168,7 +159,7 @@ cultureInfo en-US
 			    "queryexecutionunified.datareadingandserializationduration_ms_": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "DataReadingAndSerializationDuration_ms_"
 			        }
 			      },
@@ -467,7 +458,7 @@ cultureInfo en-US
 			    "queryexecutionunified.dataprocessingduration_ms_": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "DataProcessingDuration_ms_"
 			        }
 			      },
@@ -476,7 +467,7 @@ cultureInfo en-US
 			    "queryconnections.datasource": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryConnections",
+			          "ConceptualEntity": "Query Connections",
 			          "ConceptualProperty": "DataSource"
 			        }
 			      },
@@ -507,7 +498,7 @@ cultureInfo en-US
 			    "queryexecutionunified.workspaceid": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "WorkspaceId"
 			        }
 			      },
@@ -528,7 +519,7 @@ cultureInfo en-US
 			    "queryexecutionunified.itemid": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "QueryExecutionUnified",
+			          "ConceptualEntity": "Query Execution",
 			          "ConceptualProperty": "ItemId"
 			        }
 			      },
@@ -536,27 +527,6 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Item": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "system_counters.max_counter_value": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "System Counters",
-			          "ConceptualProperty": "Max Counter Value"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Max": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -578,6 +548,27 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Max. (s)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "system_counters.max_counter_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "System Counters",
+			          "ConceptualProperty": "Max"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Max": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

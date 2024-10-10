@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "NodeName"
@@ -39,7 +39,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "OperationType"
@@ -528,7 +528,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "QueryExecutionUnified"
+                            "Entity": "Query Execution"
                           }
                         },
                         "Property": "OperationType"
@@ -570,7 +570,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "QueryExecutionUnified"
+                            "Entity": "Query Execution"
                           }
                         },
                         "Property": "OperationType"

@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryConnections"
+                      "Entity": "Query Connections"
                     }
                   },
                   "Property": "DataSource"

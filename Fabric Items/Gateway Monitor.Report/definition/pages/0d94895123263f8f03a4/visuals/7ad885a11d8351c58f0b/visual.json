@@ -22,7 +22,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "QueryExecutionStartTimeUTC"
@@ -42,7 +42,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "QueryExecutionEndTimeUTC"
@@ -60,7 +60,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ServiceName"
@@ -103,7 +103,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "RootActivityId"
@@ -124,7 +124,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "QueryExecutionUnified"
+                        "Entity": "Query Execution"
                       }
                     },
                     "Property": "QueryExecutionStartTimeUTC"

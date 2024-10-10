@@ -20,32 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "System Counters"
                     }
                   },
-                  "Property": "Date"
+                  "Property": "AggregationEndTimeUTC"
                 }
               },
-              "queryRef": "Calendar.Date",
-              "nativeQueryRef": "Daily",
-              "active": true,
-              "displayName": "Daily"
-            }
-          ],
-          "fieldParameters": [
-            {
-              "parameterExpr": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Param - Counters Axis"
-                    }
-                  },
-                  "Property": "Param - Counter Axis"
-                }
-              },
-              "index": 0,
-              "length": 1
+              "queryRef": "System Counters.AggregationEndTimeUTC",
+              "nativeQueryRef": "AggregationEndTimeUTC",
+              "active": true
             }
           ]
         },
@@ -56,13 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Gateways"
+                      "Entity": "System Counters"
                     }
                   },
-                  "Property": "Gateway"
+                  "Property": "NodeName"
                 }
               },
-              "queryRef": "Gateways.Gateway"
+              "queryRef": "System Counters.NodeName",
+              "nativeQueryRef": "NodeName"
             }
           ]
         },
@@ -76,12 +60,12 @@
                       "Entity": "System Counters"
                     }
                   },
-                  "Property": "Max Counter Value"
+                  "Property": "Avg. Counter Value"
                 }
               },
-              "queryRef": "System Counters.Max Counter Value",
-              "nativeQueryRef": "Max",
-              "displayName": "Max"
+              "queryRef": "System Counters.Avg. Counter Value",
+              "nativeQueryRef": "Average",
+              "displayName": "Average"
             }
           ],
           "fieldParameters": [
@@ -109,10 +93,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Calendar"
+                    "Entity": "System Counters"
                   }
                 },
-                "Property": "Date"
+                "Property": "AggregationEndTimeUTC"
               }
             },
             "direction": "Ascending"
@@ -425,6 +409,35 @@
               }
             }
           ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "requireSingleSelect": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "0a03ecab93f547644fe8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
         },
         "howCreated": "User",
         "objects": {

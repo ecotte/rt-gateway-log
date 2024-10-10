@@ -1,4 +1,4 @@
-table QueryConnections
+table 'Query Connections'
 	lineageTag: 716d7f06-3dbc-4559-9bbb-16469fcaa3a6
 
 	column QueryTrackingId
@@ -28,7 +28,7 @@ table QueryConnections
 
 		annotation SummarizationSetBy = Automatic
 
-	partition QueryConnections = m
+	partition 'Query Connections' = m
 		mode: directQuery
 		source = ```
 				let

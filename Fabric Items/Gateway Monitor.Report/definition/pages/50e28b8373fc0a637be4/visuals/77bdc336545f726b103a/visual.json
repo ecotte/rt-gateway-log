@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "77bdc336545f726b103a",
   "position": {
-    "x": 33.761467889908253,
-    "y": 508.62385321100913,
+    "x": 34.0599381803521,
+    "y": 294.15401155758633,
     "z": 9000,
-    "height": 184.22018348623854,
-    "width": 1196.3302752293578,
+    "height": 214.26797473457867,
+    "width": 831.68176320387045,
     "tabOrder": 9000
   },
   "visual": {
@@ -20,21 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "ServiceName"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.ServiceName",
-              "nativeQueryRef": "ServiceName"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "OperationType"
@@ -48,7 +34,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "Success"
@@ -62,7 +48,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "NodeName"
@@ -76,7 +62,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "QueryTrackingId"
@@ -90,7 +76,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ErrorMessage"
@@ -98,34 +84,6 @@
               },
               "queryRef": "QueryExecutionUnified.ErrorMessage",
               "nativeQueryRef": "ErrorMessage"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "QueryText"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.QueryText",
-              "nativeQueryRef": "QueryText"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
-                    }
-                  },
-                  "Property": "DataSource"
-                }
-              },
-              "queryRef": "QueryExecutionUnified.DataSource",
-              "nativeQueryRef": "DataSource"
             }
           ],
           "showAll": true
@@ -185,7 +143,7 @@
             "wordWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -230,7 +188,7 @@
                                   "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "QueryExecutionUnified"
+                                        "Entity": "Query Execution"
                                       }
                                     },
                                     "Property": "Success"
@@ -266,7 +224,7 @@
                                   "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "QueryExecutionUnified"
+                                        "Entity": "Query Execution"
                                       }
                                     },
                                     "Property": "Success"
@@ -302,7 +260,7 @@
                                   "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "QueryExecutionUnified"
+                                        "Entity": "Query Execution"
                                       }
                                     },
                                     "Property": "Success"
@@ -555,6 +513,48 @@
           "selector": {
             "metadata": "Gateway Logs.HelperId"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "410.0235399701961D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.ErrorMessage"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "37.28870475248418D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.Success"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "218.02510483476323D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.QueryTrackingId"
+          }
         }
       ],
       "columnFormatting": [
@@ -598,32 +598,13 @@
       "title": [
         {
           "properties": {
-            "titleWrap": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "'Erros per Query'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "stylePreset": [
-        {
-          "properties": {
-            "name": {
-              "expr": {
-                "Literal": {
-                  "Value": "'None'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -631,10 +612,77 @@
                 }
               }
             },
-            "section": {
+            "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "'ReportSection95e9960116cd42f74c67'"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

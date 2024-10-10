@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ClusterName"
@@ -35,7 +35,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "RootActivityId"
@@ -50,7 +50,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "NodeName"
@@ -71,7 +71,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "QueryExecutionStartTimeUTC"
@@ -91,7 +91,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "ServiceName"
@@ -180,7 +180,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ClusterName"
@@ -199,7 +199,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "RootActivityId"
@@ -663,7 +663,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "QueryExecutionUnified"
+                "Entity": "Query Execution"
               }
             },
             "Property": "Success"
@@ -675,7 +675,7 @@
           "From": [
             {
               "Name": "q",
-              "Entity": "QueryExecutionUnified",
+              "Entity": "Query Execution",
               "Type": 0
             }
           ],

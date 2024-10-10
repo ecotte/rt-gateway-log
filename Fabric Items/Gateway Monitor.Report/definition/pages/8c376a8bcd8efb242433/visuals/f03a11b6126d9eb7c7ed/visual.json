@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "QueryExecutionStartTimeUTC"
@@ -39,7 +39,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "NodeName"
@@ -76,7 +76,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "QueryExecutionUnified"
+                    "Entity": "Query Execution"
                   }
                 },
                 "Property": "QueryExecutionStartTimeUTC"

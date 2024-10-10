@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryConnections"
+                      "Entity": "Query Connections"
                     }
                   },
                   "Property": "DataSource"
@@ -36,7 +36,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryConnections"
+                      "Entity": "Query Connections"
                     }
                   },
                   "Property": "Path"
@@ -57,7 +57,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryConnections"
+                          "Entity": "Query Connections"
                         }
                       },
                       "Property": "QueryTrackingId"
@@ -82,7 +82,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "QueryConnections"
+                        "Entity": "Query Connections"
                       }
                     },
                     "Property": "QueryTrackingId"
@@ -111,7 +111,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryConnections"
+                      "Entity": "Query Connections"
                     }
                   },
                   "Property": "DataSource"

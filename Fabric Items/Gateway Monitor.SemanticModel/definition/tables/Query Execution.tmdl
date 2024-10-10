@@ -1,4 +1,4 @@
-table QueryExecutionUnified
+table 'Query Execution'
 	lineageTag: 53f0d509-533f-41a8-abf4-a67565034eba
 
 	column RootActivityId
@@ -274,7 +274,7 @@ table QueryExecutionUnified
 
 		annotation SummarizationSetBy = Automatic
 
-	partition QueryExecutionUnified = m
+	partition 'Query Execution' = m
 		mode: directQuery
 		source = ```
 				let

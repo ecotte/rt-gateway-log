@@ -34,7 +34,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ErrorMessage"
@@ -706,7 +706,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "QueryExecutionUnified"
+                "Entity": "Query Execution"
               }
             },
             "Property": "ErrorMessage"
@@ -718,7 +718,7 @@
           "From": [
             {
               "Name": "q",
-              "Entity": "QueryExecutionUnified",
+              "Entity": "Query Execution",
               "Type": 0
             }
           ],

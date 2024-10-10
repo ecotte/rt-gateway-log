@@ -222,7 +222,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "QueryExecutionUnified"
+                "Entity": "Query Execution"
               }
             },
             "Property": "Success"
@@ -234,7 +234,7 @@
           "From": [
             {
               "Name": "q",
-              "Entity": "QueryExecutionUnified",
+              "Entity": "Query Execution",
               "Type": 0
             }
           ],

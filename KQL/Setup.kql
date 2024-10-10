@@ -459,3 +459,26 @@
         RequestId,
         QueryTrackingId
  }
+ .create-or-alter function with (folder = "Views", docstring = "Function to get SystemCounters", skipvalidation = "true") SystemCounters(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
+     let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
+     let TimeTo = datetime_add('hour', 24, DateSearch);
+     let GatewaysToSeach = GatewayNodeInfo
+        | where AllGateways or machine in(Gateways)
+        | where AllClusters or clusterName in(Clusters)
+        | project nodeId;
+     let SystemCounter = SystemCounterAggregationReport
+        | where AggregationEndTimeUTC >= TimeFrom and AggregationEndTimeUTC <= TimeTo
+        | where GatewayObjectId in(GatewaysToSeach);
+     SystemCounter
+    | lookup GatewayNodeInfo on $left.GatewayObjectId == $right.nodeId
+    | project 
+        ClusterId=clusterId,
+        ClusterName=clusterName,
+        NodeId=GatewayObjectId, 
+        NodeName=machine,
+        AggregationEndTimeUTC,
+        CounterName,
+        Max,
+        Min,
+        Average
+ }

@@ -22,7 +22,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "ServiceName"
@@ -42,7 +42,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "ClusterName"

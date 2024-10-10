@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-  "name": "d5f731f414a6728b3739",
+  "name": "bbfc9810908ed9c8b8c7",
   "position": {
-    "x": 649.26541554959783,
-    "y": 501.70509383378015,
-    "z": 4000,
-    "height": 184.62198391420912,
-    "width": 604.65415549597856,
-    "tabOrder": 4000
+    "x": 35.002680965147455,
+    "y": 137.26541554959786,
+    "z": 10001,
+    "height": 181.87667560321717,
+    "width": 614.26273458445041,
+    "tabOrder": 10001
   },
   "visual": {
     "visualType": "lineChart",
@@ -20,32 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Calendar"
+                      "Entity": "System Counters"
                     }
                   },
-                  "Property": "Date"
+                  "Property": "AggregationEndTimeUTC"
                 }
               },
-              "queryRef": "Calendar.Date",
-              "nativeQueryRef": "Daily",
-              "active": true,
-              "displayName": "Daily"
-            }
-          ],
-          "fieldParameters": [
-            {
-              "parameterExpr": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Param - Counters Axis"
-                    }
-                  },
-                  "Property": "Param - Counter Axis"
-                }
-              },
-              "index": 0,
-              "length": 1
+              "queryRef": "System Counters.AggregationEndTimeUTC",
+              "nativeQueryRef": "AggregationEndTimeUTC",
+              "active": true
             }
           ]
         },
@@ -56,13 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Gateways"
+                      "Entity": "System Counters"
                     }
                   },
-                  "Property": "Gateway"
+                  "Property": "NodeName"
                 }
               },
-              "queryRef": "Gateways.Gateway"
+              "queryRef": "System Counters.NodeName",
+              "nativeQueryRef": "NodeName"
             }
           ]
         },
@@ -76,12 +60,12 @@
                       "Entity": "System Counters"
                     }
                   },
-                  "Property": "Max Counter Value"
+                  "Property": "Avg. Counter Value"
                 }
               },
-              "queryRef": "System Counters.Max Counter Value",
-              "nativeQueryRef": "Max",
-              "displayName": "Max"
+              "queryRef": "System Counters.Avg. Counter Value",
+              "nativeQueryRef": "Average",
+              "displayName": "Average"
             }
           ],
           "fieldParameters": [
@@ -93,7 +77,7 @@
                       "Entity": "Param - Counters Measure"
                     }
                   },
-                  "Property": "Param - Counters Measure"
+                  "Property": "Param - Counter Axis Fields"
                 }
               },
               "index": 0,
@@ -109,10 +93,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Calendar"
+                    "Entity": "System Counters"
                   }
                 },
-                "Property": "Date"
+                "Property": "AggregationEndTimeUTC"
               }
             },
             "direction": "Ascending"
@@ -201,6 +185,13 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
                 }
               }
             }
@@ -298,6 +289,19 @@
               "expr": {
                 "Literal": {
                   "Value": "2L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "seriesLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -416,7 +420,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'MashupMEMKb'"
+                          "Value": "'SystemCPUPercent'"
                         }
                       }
                     ]
@@ -425,6 +429,35 @@
               }
             }
           ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "requireSingleSelect": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "1f9d8e9afea8af1a9008",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Date"
+          }
         },
         "howCreated": "User",
         "objects": {

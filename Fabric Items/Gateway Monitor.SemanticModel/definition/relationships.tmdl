@@ -1,18 +1,3 @@
-relationship ae740edc-ce39-451f-bdcf-424274cbc63c
-	joinOnDateBehavior: datePartOnly
-	fromColumn: CalendarFrom.Date
-	toColumn: LocalDateTable_f4451b8c-4924-4b93-9f76-e84b0912ddd2.Date
-
-relationship 4323bd16-4bfe-46ae-ab1f-31035b941d50
-	joinOnDateBehavior: datePartOnly
-	fromColumn: CalendarFrom.'Week Start Date'
-	toColumn: LocalDateTable_56f31ebd-6495-479f-b1bd-d193ef29deb7.Date
-
-relationship 07b0fd99-1fc6-4aa9-9a1b-40a2154e6de0
-	joinOnDateBehavior: datePartOnly
-	fromColumn: CalendarFrom.'Week End Date'
-	toColumn: LocalDateTable_c3d5f007-f72a-41a7-945f-4aaad100ab78.Date
-
 relationship e92960a5-6de4-41b0-bd15-0b6795cd59f7
 	joinOnDateBehavior: datePartOnly
 	fromColumn: Calendar.Date
@@ -31,6 +16,6 @@ relationship 4c22e8d7-66a4-46be-ac81-69af3eaa6e95
 relationship 1da4fc21-aac7-7a83-e43a-c72b6a1a4133
 	crossFilteringBehavior: bothDirections
 	relyOnReferentialIntegrity
-	fromColumn: QueryConnections.QueryTrackingId
-	toColumn: QueryExecutionUnified.QueryTrackingId
+	fromColumn: 'Query Connections'.QueryTrackingId
+	toColumn: 'Query Execution'.QueryTrackingId
 

@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "WorkspaceId"
@@ -35,7 +35,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ItemId"
@@ -55,7 +55,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "QueryExecutionUnified"
+                    "Entity": "Query Execution"
                   }
                 },
                 "Property": "ItemId"

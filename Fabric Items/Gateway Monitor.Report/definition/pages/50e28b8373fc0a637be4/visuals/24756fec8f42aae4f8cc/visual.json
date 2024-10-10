@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "24756fec8f42aae4f8cc",
   "position": {
-    "x": 33.761467889908253,
-    "y": 294.3119266055046,
+    "x": 34.0599381803521,
+    "y": 513.99543072167717,
     "z": 4000,
-    "height": 214.31192660550457,
-    "width": 830.82568807339442,
+    "height": 169.68041929848138,
+    "width": 1215.6301572369305,
     "tabOrder": 3000
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "QueryExecutionStartTimeUTC"
@@ -42,7 +42,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "QueryExecutionUnified"
+                          "Entity": "Query Execution"
                         }
                       },
                       "Property": "QueryExecutionEndTimeUTC"
@@ -60,7 +60,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ServiceName"
@@ -88,7 +88,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "OperationType"
@@ -102,7 +102,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "Success"
@@ -116,7 +116,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ClusterName"
@@ -130,7 +130,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "NodeName"
@@ -144,7 +144,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "WorkspaceId"
@@ -158,7 +158,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ItemId"
@@ -172,7 +172,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "RootActivityId"
@@ -186,7 +186,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "QueryTrackingId"
@@ -200,7 +200,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "CurrentActivityId"
@@ -214,7 +214,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "RequestId"
@@ -228,7 +228,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ConnectionIds"
@@ -242,7 +242,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "DataSource"
@@ -256,7 +256,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "ErrorMessage"
@@ -270,7 +270,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "QueryExecutionDuration_ms_"
@@ -284,7 +284,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "DataProcessingDuration_ms_"
@@ -298,7 +298,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "DataReadingAndSerializationDuration_ms_"
@@ -312,7 +312,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "SpoolingDiskReadingDuration_ms_"
@@ -326,7 +326,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "SpoolingDiskWritingDuration_ms_"
@@ -340,7 +340,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "QueryExecutionUnified"
+                      "Entity": "Query Execution"
                     }
                   },
                   "Property": "SpoolingTotalDataSize_byte_"
@@ -362,7 +362,7 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "QueryExecutionUnified"
+                        "Entity": "Query Execution"
                       }
                     },
                     "Property": "QueryExecutionStartTimeUTC"
@@ -380,6 +380,13 @@
       "values": [
         {
           "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
             "fontColorPrimary": {
               "solid": {
                 "color": {
@@ -429,14 +436,7 @@
             "wordWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
+                  "Value": "true"
                 }
               }
             }
@@ -474,7 +474,7 @@
                                   "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "QueryExecutionUnified"
+                                        "Entity": "Query Execution"
                                       }
                                     },
                                     "Property": "Success"
@@ -510,7 +510,7 @@
                                   "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "QueryExecutionUnified"
+                                        "Entity": "Query Execution"
                                       }
                                     },
                                     "Property": "Success"
@@ -546,7 +546,7 @@
                                   "Column": {
                                     "Expression": {
                                       "SourceRef": {
-                                        "Entity": "QueryExecutionUnified"
+                                        "Entity": "Query Execution"
                                       }
                                     },
                                     "Property": "Success"
@@ -619,6 +619,13 @@
       "columnHeaders": [
         {
           "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -646,13 +653,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
                 }
               }
             }
@@ -799,6 +799,48 @@
           "selector": {
             "metadata": "Gateway Logs.HelperId"
           }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "410.0235399701961D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.ErrorMessage"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "37.28870475248418D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.Success"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "218.02510483476323D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.QueryTrackingId"
+          }
         }
       ],
       "columnFormatting": [
@@ -842,32 +884,6 @@
       "title": [
         {
           "properties": {
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "stylePreset": [
-        {
-          "properties": {
-            "name": {
-              "expr": {
-                "Literal": {
-                  "Value": "'None'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualTooltip": [
-        {
-          "properties": {
             "show": {
               "expr": {
                 "Literal": {
@@ -875,10 +891,84 @@
                 }
               }
             },
-            "section": {
+            "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "'ReportSection95e9960116cd42f74c67'"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Query Details'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

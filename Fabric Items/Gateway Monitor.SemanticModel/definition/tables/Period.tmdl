@@ -1,8 +1,10 @@
 table Period
+	isHidden
 	lineageTag: 6121945d-f230-4506-8cf7-b3e3af688cbe
 
 	column 'Days Back'
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 7c81eef8-aab6-4675-a550-f0be2ba0a3c2
 		summarizeBy: sum
@@ -15,6 +17,8 @@ table Period
 				  "selectAllValue": "__SelectAll__"
 				}
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	partition Period = m
@@ -25,6 +29,8 @@ table Period
 				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Days Back", Int64.Type}})
 				in
 				    #"Changed Type"
+
+	changedProperty = IsHidden
 
 	annotation PBI_NavigationStepName = Navigation
 

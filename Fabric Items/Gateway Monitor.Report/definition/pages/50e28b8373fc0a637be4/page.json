@@ -13,7 +13,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "QueryExecutionUnified"
+                "Entity": "Query Execution"
               }
             },
             "Property": "RootActivityId"
@@ -24,7 +24,7 @@
           "From": [
             {
               "Name": "q",
-              "Entity": "QueryExecutionUnified",
+              "Entity": "Query Execution",
               "Type": 0
             }
           ],
@@ -73,7 +73,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "QueryExecutionUnified"
+                "Entity": "Query Execution"
               }
             },
             "Property": "RootActivityId"
