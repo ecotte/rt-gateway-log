@@ -23,7 +23,7 @@ expression DaysBack = null meta [IsParameterQuery=true, Type="Number", IsParamet
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Number
+	annotation PBI_ResultType = Null
 
 expression DateToSearch = null meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=false]
 	lineageTag: 5b4a36ca-20f6-410c-9dae-33c164f5c0e1
@@ -32,7 +32,7 @@ expression DateToSearch = null meta [IsParameterQuery=true, Type="DateTime", IsP
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = DateTime
+	annotation PBI_ResultType = Null
 
 expression SelectedGateways = null meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=false]
 	lineageTag: b01fd9ab-b809-4514-9708-c7c91f887853
@@ -41,7 +41,7 @@ expression SelectedGateways = null meta [IsParameterQuery=true, Type="Text", IsP
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Text
+	annotation PBI_ResultType = Null
 
 expression SelectedClusters = null meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=false]
 	lineageTag: f2fadb58-bb52-4861-af2c-785979ea0fad
@@ -50,5 +50,5 @@ expression SelectedClusters = null meta [IsParameterQuery=true, Type="Text", IsP
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Text
+	annotation PBI_ResultType = Null
 

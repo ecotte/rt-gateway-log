@@ -70,27 +70,7 @@
   "visualInteractions": [
     {
       "source": "b932348d8a5a0dd7e590",
-      "target": "da2ad21c26760f353aed",
-      "type": "NoFilter"
-    },
-    {
-      "source": "b932348d8a5a0dd7e590",
-      "target": "c3f663be635ae6e4c52d",
-      "type": "NoFilter"
-    },
-    {
-      "source": "b932348d8a5a0dd7e590",
-      "target": "207b7d87c1e7e3ba08b8",
-      "type": "NoFilter"
-    },
-    {
-      "source": "b932348d8a5a0dd7e590",
       "target": "4c0c6629df06628b8dbd",
-      "type": "NoFilter"
-    },
-    {
-      "source": "b932348d8a5a0dd7e590",
-      "target": "74839e4ebe64f8109f80",
       "type": "NoFilter"
     },
     {
