@@ -66,6 +66,23 @@ table 'Execution Measures'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure '# Queries (success)' = CALCULATE([# Queries],'Query Execution'[Success]="Y")
+		formatString: 0
+		lineageTag: d0ef603c-916e-4fb9-86a9-7a4c2d0b48bb
+
+	measure '# Queries (running)' = [# Queries]-[# Queries (success)]-[# Queries (errors)]
+		formatString: 0
+		lineageTag: 5764549e-271a-4339-a143-7d2684360797
+
+	measure 'Job Success' =
+			SWITCH(
+			    TRUE(),
+			    [# Queries (running)]>0,"R",
+			    [# Queries (errors)]>0,"N",
+			    "Y"
+			)
+		lineageTag: 39ffdb01-0f51-49a1-a30f-7f0197b8c73f
+
 	partition 'Execution Measures' = m
 		mode: import
 		source =

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
   "name": "539a9c42c7d9f6e641d8",
   "position": {
-    "x": 32.13389121338912,
+    "x": 24.76987447698745,
     "y": 95.062761506276161,
     "z": 3000,
     "height": 571.04602510460256,
-    "width": 1226.4435146443516,
+    "width": 1233.8075313807533,
     "tabOrder": 3000
   },
   "visual": {
@@ -42,8 +42,9 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.RootActivityId",
-              "nativeQueryRef": "RootActivityId",
-              "active": true
+              "nativeQueryRef": "Root Activity Id",
+              "active": true,
+              "displayName": "Root Activity Id"
             },
             {
               "field": {
@@ -57,8 +58,9 @@
                 }
               },
               "queryRef": "QueryExecutionUnified.NodeName",
-              "nativeQueryRef": "NodeName",
-              "active": true
+              "nativeQueryRef": "Node Name",
+              "active": true,
+              "displayName": "Node Name"
             }
           ]
         },
@@ -101,22 +103,8 @@
                 }
               },
               "queryRef": "Min(QueryExecutionUnified.ServiceName)",
-              "nativeQueryRef": "ServiceName",
-              "displayName": "ServiceName"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Execution Measures"
-                    }
-                  },
-                  "Property": "# Nodes"
-                }
-              },
-              "queryRef": "Execution Measures.# Nodes",
-              "nativeQueryRef": "# Nodes"
+              "nativeQueryRef": "Service Name",
+              "displayName": "Service Name"
             },
             {
               "field": {
@@ -174,7 +162,6 @@
             "queryRefs": [
               "QueryExecutionUnified.ClusterName"
             ],
-            "isCollapsed": true,
             "identityKeys": [
               {
                 "Column": {
@@ -193,7 +180,6 @@
             "queryRefs": [
               "QueryExecutionUnified.RootActivityId"
             ],
-            "isCollapsed": true,
             "identityKeys": [
               {
                 "Column": {
@@ -216,32 +202,7 @@
             "isPinned": true
           }
         ],
-        "root": {
-          "children": [
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'edcotte-Gateway'"
-                  }
-                }
-              ],
-              "isToggled": true,
-              "children": [
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'724023c1-4921-84cd-cc22-d2b10f5f7709'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                }
-              ]
-            }
-          ]
-        }
+        "root": {}
       }
     ],
     "objects": {
@@ -613,6 +574,19 @@
           },
           "selector": {
             "metadata": "Gateway Logs.HelperId"
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compact'"
+                }
+              }
+            }
           }
         }
       ]

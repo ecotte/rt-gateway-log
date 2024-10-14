@@ -77,12 +77,12 @@
                       "Entity": "Execution Measures"
                     }
                   },
-                  "Property": "# Queries (errors)"
+                  "Property": "Job Success"
                 }
               },
-              "queryRef": "QueryExecutionUnified.# Queries (errors)",
-              "nativeQueryRef": "# Errors",
-              "displayName": "# Errors"
+              "queryRef": "Execution Measures.Job Success",
+              "nativeQueryRef": "Success",
+              "displayName": "Success"
             },
             {
               "field": {
@@ -510,14 +510,14 @@
               "layout": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Before'"
+                    "Value": "'IconOnly'"
                   }
                 }
               },
               "verticalAlignment": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Top'"
+                    "Value": "'Middle'"
                   }
                 }
               },
@@ -536,65 +536,18 @@
                                     "Entity": "Execution Measures"
                                   }
                                 },
-                                "Property": "# Queries (errors)"
+                                "Property": "Job Success"
                               }
                             },
                             "Right": {
                               "Literal": {
-                                "Value": "null"
+                                "Value": "'N'"
                               }
                             }
-                          }
-                        },
-                        "Value": {
-                          "Literal": {
-                            "Value": "'SymbolHigh'"
-                          }
-                        }
-                      },
-                      {
-                        "Condition": {
-                          "And": {
-                            "Left": {
-                              "Comparison": {
-                                "ComparisonKind": 2,
-                                "Left": {
-                                  "Measure": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Entity": "Execution Measures"
-                                      }
-                                    },
-                                    "Property": "# Queries (errors)"
-                                  }
-                                },
-                                "Right": {
-                                  "Literal": {
-                                    "Value": "0D"
-                                  }
-                                }
-                              }
-                            },
-                            "Right": {
-                              "Comparison": {
-                                "ComparisonKind": 3,
-                                "Left": {
-                                  "Measure": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Entity": "Execution Measures"
-                                      }
-                                    },
-                                    "Property": "# Queries (errors)"
-                                  }
-                                },
-                                "Right": {
-                                  "Literal": {
-                                    "Value": "10000D"
-                                  }
-                                }
-                              }
-                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
                           }
                         },
                         "Value": {
@@ -614,19 +567,54 @@
                                     "Entity": "Execution Measures"
                                   }
                                 },
-                                "Property": "# Queries (errors)"
+                                "Property": "Job Success"
                               }
                             },
                             "Right": {
                               "Literal": {
-                                "Value": "0D"
+                                "Value": "'Y'"
                               }
                             }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
                           }
                         },
                         "Value": {
                           "Literal": {
                             "Value": "'SymbolHigh'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "Job Success"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'R'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'Circle25'"
                           }
                         }
                       }
@@ -644,7 +632,7 @@
                 }
               }
             ],
-            "metadata": "QueryExecutionUnified.# Queries (errors)"
+            "metadata": "Execution Measures.Job Success"
           }
         }
       ],
@@ -693,7 +681,7 @@
             }
           },
           "selector": {
-            "metadata": "QueryExecutionUnified.# Queries (errors)"
+            "metadata": "Execution Measures.Job Success"
           }
         }
       ],

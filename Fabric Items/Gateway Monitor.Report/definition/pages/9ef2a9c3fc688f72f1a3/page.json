@@ -113,7 +113,7 @@
           "duration": {
             "expr": {
               "Literal": {
-                "Value": "'PT1S'"
+                "Value": "'PT10S'"
               }
             }
           }

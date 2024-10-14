@@ -577,6 +577,69 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "query_execution.nodename": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Query Execution",
+			          "ConceptualProperty": "NodeName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Node Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "query_execution.rootactivityid": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Query Execution",
+			          "ConceptualProperty": "RootActivityId"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Root Activity Id": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "execution_measures.job_success": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Execution Measures",
+			          "ConceptualProperty": "Job Success"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Success": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  }
 			}
