@@ -8,7 +8,7 @@ Our proposed solution addresses this issue by centralizing the logs for easier a
 
 Using Microsoft Fabric, these logs are centralized in an event stream and processed efficiently through the Eventhouse. This centralized data is then available for analysis in Power BI and can support automated response rules via a data activator (pending implementation). 
 
-![image](https://github.com/ecotte/rt-gateway-log/assets/9998133/99054094-ad9f-4494-a622-8e44c3dcbbd0)
+![image](https://github.com/ecotte/rt-gateway-log/blob/main/Images/01%20-%20Gateway%20Monitoring%20Architecture.png)
 
 This solution uses Microsoft Fabric to address these issues by providing: 
 
@@ -48,11 +48,11 @@ To create an Eventstream go to "New Item -> Eventstream"
 
 Once the Eventstream is created, click on "New Source" and select "Custom App".
 
-<img width="682" alt="image" src="https://github.com/user-attachments/assets/03da6ee2-bd52-49fb-a2e0-cf7a6bd49b8f">
+<img width="682" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/02%20-%20New%20Eventstream.png">
 
 For each Eventstream, go to the "Custom App" source, and select the connection string. It will be used for the setup of the script.
 
-<img width="652" alt="image" src="https://github.com/user-attachments/assets/5532f16b-af1a-430c-b33d-90bc5c256036">
+<img width="652" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/03%20-%20Custom%20App%20Eventstream.png">
 
 
 ### Lakehouse 
@@ -63,7 +63,7 @@ To create the Lakehouse go to "New Item -> Lakehouse"
 
 Copy the workspace id and Lakehouse id from the URL as shown in the image.
 
-<img width="810" alt="image" src="https://github.com/user-attachments/assets/195f5f40-1f2b-41c0-9138-36e1194f7908">
+<img width="810" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/04%20-%20Lakehouse.png">
 
 
 ### Eventhouse 
@@ -76,7 +76,7 @@ After creating the Eventhouse, we are going to run the content of the script "[K
 
 The data flow is as follow:
 
-![Screenshot 2024-10-10 232530](https://github.com/user-attachments/assets/9c6aa2b4-76f9-4bb5-9168-fa1947e8da04)
+![image](https://github.com/ecotte/rt-gateway-log/blob/main/Images/05%20-%20Gateway%20Report%20Data%20Logic.png)
 
 
 ## Script deployment and setup in the gateway nodes
@@ -136,15 +136,15 @@ Go to the Heartbeat Eventstream, and select "New Destination -> KQL Database"
 
 Use the "Direct ingestion" options and look for the KQL Database.
 
-<img width="247" alt="image" src="https://github.com/user-attachments/assets/6c6cc88d-ccc7-4cab-be59-5730ad6e8154">
+<img width="247" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/06%20-%20Connect%20to%20KQL%20Database.png">
 
 Select the "GatewayHeartbeat" table and name the connector.
 
-<img width="857" alt="image" src="https://github.com/user-attachments/assets/9ea7a949-c9b6-49b2-b204-6ff43a54c0ff">
+<img width="857" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/07%20-%20Select%20Eventhouse%20Table.png">
 
 Once you see some data, click in "Advance" and chose "Existing mapping", and select from the drop down "GatewayHeartbeat_mapping".
 
-<img width="719" alt="image" src="https://github.com/user-attachments/assets/a55f9ef9-ee3e-45d8-84be-28cf22c05ca9">
+<img width="719" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/08%20-%20Select%20Mapping.png">
 
 ### Report Eventstream
 
@@ -152,16 +152,16 @@ Go to the Report Eventstream, and select "New Destination -> KQL Database"
 
 Use the "Direct ingestion" options and look for the KQL Database.
 
-<img width="239" alt="image" src="https://github.com/user-attachments/assets/1f51154b-4851-4898-b159-95650affabaf">
+<img width="239" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/09%20-%20Connect%20to%20KQL%20Database%20Report.png">
 
 Select the "GatewayReport-Raw" table and name the connector.
 
-<img width="716" alt="image" src="https://github.com/user-attachments/assets/4e55e3c2-cd7d-4e1e-81aa-6a4021426533">
+<img width="716" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/10%20-%20Select%20Eventhouse%20Table%20Report.png">
 
 
 Once you see some data, click in "Advance" and chose "Existing mapping", and select from the drop down "GatewayReport-Raw_mapping".
 
-<img width="722" alt="image" src="https://github.com/user-attachments/assets/6e194238-dc3d-4df8-ae43-97f853331608">
+<img width="722" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/12%20-%20Select%20Mapping%20Report.png">
 
 ## Report Deployment
 
@@ -169,7 +169,7 @@ Use the template in the [\Gateway Monitoring.pbit](https://github.com/ecotte/rt-
 -KustoURL: The Query URL found in the Eventhouse
 -KustoDB: The name of the KQL DB
 
-<img width="515" alt="image" src="https://github.com/user-attachments/assets/332991ab-1e2b-409e-a953-8ac98eca8a13">
+<img width="515" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/11%20-%20PBIT%20Parameters.png">
 
 Then load the report and use the credentials with access to the Eventhouse.
 
@@ -179,7 +179,7 @@ You will find the following pages.
 
 Description of the gateway and the indicator if the heartbeat has been received in the last minute.
 
-<img width="1543" alt="image" src="https://github.com/user-attachments/assets/2ed39a53-fb5f-4f9e-91e7-0561006d4883">
+<img width="1543" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/13%20-%20Report%20Gateway%20Information.png">
 
 ### Jobs
 
@@ -189,7 +189,7 @@ You can filter by the date you want to look into, how many days you want to look
 
 Selecting a Job in the list will allow you to do a "Drill through" to the Job Details.
 
-<img width="1543" alt="image" src="https://github.com/user-attachments/assets/bea3611b-f297-4fec-8a9b-752bf0c8f95c">
+<img width="1543" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/14%20-%20Report%20Jobs.png">
 
 ### Job Details
 
@@ -204,24 +204,24 @@ The details of the job, where you can find:
 - Summary of connections kind and the path
 - Query details with the full information of the query
 
-<img width="1508" alt="image" src="https://github.com/user-attachments/assets/424fcc34-185f-41e6-9441-03519eebbf55">
+<img width="1508" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/15%20-%20Report%20Job%20Details.png">
 
 
 ### Queries
 
 General information of all queries that ran in the gateways
 
-<img width="1418" alt="image" src="https://github.com/user-attachments/assets/d15b8bfa-0696-40c2-bba1-e541aabbffe8">
+<img width="1418" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/16%20-%20Report%20Queries.png">
 
 ### Running Jobs
 
 Will show only the jobs that are running in the gateways. Selecting a job and going to the details will give you the information on the job and related queries.
 
-<img width="1412" alt="image" src="https://github.com/user-attachments/assets/44144386-1e25-44e9-a9be-7db5bfcef010">
+<img width="1412" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/17%20-%20Report%20Running%20Jobs.png">
 
 ### System Counters
 
 Overview of the system counters report generated by the Gateways.
 
-<img width="1406" alt="image" src="https://github.com/user-attachments/assets/1542c4e3-e06b-4380-9ee5-e38861d2aa9e">
+<img width="1406" alt="image" src="https://github.com/ecotte/rt-gateway-log/blob/main/Images/18%20-%20Report%20System%20Information.png">
 
