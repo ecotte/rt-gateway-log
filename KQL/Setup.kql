@@ -1,6 +1,6 @@
 .execute script <|
-.create-merge table GatewaystHeartbeat (GatewayId:guid, FileVersion:string, ServerTimestampUTC:datetime, Responding:bool, ProcessName:string, ProductVersion:string, StartTime:datetime) with (folder = "System") 
-.create-merge table GatewaysHeartbeat (GatewayId:guid, FileVersion:string, ServerTimestampUTC:datetime, Responding:bool, ProcessName:string, ProductVersion:string, StartTime:datetime) with (folder = "System") 
+.create-merge table GatewaystHeartbeat (GatewayId:guid, FileVersion:string, ServerTimestampUTC:datetime, Responding:bool, ProcessName:string, ProductVersion:string, StartTime:datetime) with (folder = "Gateway/System") 
+.create-merge table GatewaysHeartbeat (GatewayId:guid, FileVersion:string, ServerTimestampUTC:datetime, Responding:bool, ProcessName:string, ProductVersion:string, StartTime:datetime) with (folder = "Gateway/System") 
 .create-or-alter table GatewaysHeartbeat ingestion json mapping 'GatewaysHeartbeat_mapping'
 ```
 [{"Properties":{"Path":"$['GatewayId']"},"column":"GatewayId","datatype":""},{"Properties":{"Path":"$['FileVersion']"},"column":"FileVersion","datatype":""},{"Properties":{"Path":"$['ServerTimestampUTC']"},"column":"ServerTimestampUTC","datatype":""},{"Properties":{"Path":"$['Responding']"},"column":"Responding","datatype":""},{"Properties":{"Path":"$['ProcessName']"},"column":"ProcessName","datatype":""},{"Properties":{"Path":"$['ProductVersion']"},"column":"ProductVersion","datatype":""},{"Properties":{"Path":"$['StartTime']"},"column":"StartTime","datatype":""}]
@@ -9,7 +9,7 @@
 .alter table GatewaysHeartbeat policy caching hotdata = time(1.00:00:00) hotindex = time(1.00:00:00)
 .alter table GatewaysHeartbeat policy partitioning "{\"PartitionKeys\":[{\"ColumnName\":\"GatewayId\",\"Kind\":1,\"Properties\":{\"Function\":1,\"MaxPartitionCount\":128,\"Seed\":1,\"PartitionAssignmentMode\":1}},{\"ColumnName\":\"ServerTimestampUTC\",\"Kind\":2,\"Properties\":{\"Reference\":\"1970-01-01T00:00:00\",\"RangeSize\":\"01:00:00\",\"OverrideCreationTime\":false}}],\"EffectiveDateTime\":\"2024-02-22T10:57:57.4270573Z\",\"MinRowCountPerOperation\":0,\"MaxRowCountPerOperation\":0,\"MaxOriginalSizePerOperation\":0}"
 .alter table GatewaysHeartbeat policy streamingingestion enable 
-.create-merge table ['GatewayReports-Raw'] (logType:string, log:dynamic, logDate:datetime) with (folder = "Raw") 
+.create-merge table ['GatewayReports-Raw'] (logType:string, log:dynamic, logDate:datetime) with (folder = "Gateway/Raw") 
 .create-or-alter table ['GatewayReports-Raw'] ingestion json mapping 'GatewayReports-Raw_mapping'
 ```
 [{"Properties":{"Path":"$['logType']"},"column":"logType","datatype":""},{"Properties":{"Path":"$['log']"},"column":"log","datatype":""},{"Properties":{"Path":"$['logDate']"},"column":"logDate","datatype":""}]
@@ -17,16 +17,16 @@
 .alter table ['GatewayReports-Raw'] policy retention @'{"SoftDeletePeriod":"1.00:00:00","Recoverability":"Disabled"}'
 .alter table ['GatewayReports-Raw'] policy caching hotdata = time(1.00:00:00) hotindex = time(1.00:00:00)
 .alter table ['GatewayReports-Raw'] policy streamingingestion enable 
-.create-merge table SystemCounterAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, CounterName:string, Max:real, Min:real, Average:real) with (folder = "System") 
-.create-merge table QueryStartReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, QueryTrackingId:guid, QueryExecutionStartTimeUTC:datetime, OperationType:string, QueryText:string, Table:string, EvaluationContext:dynamic, ServiceName:string, CurrentActivityId:guid, ItemId:guid, QueryType:string, RootActivityId:guid, SKU:string, WorkspaceId:guid, HostContextType:string, ConnectionIds:string) with (folder = "Facts") 
-.create-merge table QueryExecutionReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, QueryTrackingId:guid, QueryExecutionEndTimeUTC:datetime, QueryExecutionDuration_ms_:long, QueryType:string, DataReadingAndSerializationDuration_ms_:long, SpoolingDiskWritingDuration_ms_:long, SpoolingDiskReadingDuration_ms_:long, SpoolingTotalDataSize_byte_:long, DataProcessingEndTimeUTC:datetime, DataProcessingDuration_ms_:long, Success:string, ErrorMessage:string) with (folder = "Facts") 
-.create-merge table OpenConnectionReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, OpenConnectionStartTimeUTC:datetime, OpenConnectionTrackingId:guid, ProviderName:string, OpenConnectionDuration_ms_:long, Success:string, ErrorMessage:string) with (folder = "Facts") 
-.create-merge table QueryExecutionAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, DataSource:dynamic, Success:string, AverageQueryExecutionDuration_ms_:real, MaxQueryExecutionDuration_ms_:long, MinQueryExecutionDuration_ms_:long, QueryType:string, AverageDataProcessingDuration_ms_:real, MaxDataProcessingDuration_ms_:long, MinDataProcessingDuration_ms_:long, Count:long) with (folder = "Facts") 
-.create-merge table QueryStreamingReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, QueryTrackingId:guid, StreamingStartTimeUTC:datetime, SpoolingDiskReadingDuration_ms_:long, StreamingDuration_ms_:long, Success:string, ErrorMessage:string) with (folder = "Facts") 
-.create-merge table MashupEvaluationReport (GatewayObjectId:guid, QueryTrackingId:guid, ConnectionId:guid, DataSourceKinds:string, DataSourcePaths:string, EndTimeUTC:datetime, ['AverageCommit byte']:real, AverageIODataBytesPerSecond:real, AveragePercentProcessorTime:real, ['AverageWorkingSet byte']:real, ['MaxCommit byte']:long, MaxIODataBytesPerSecond:long, MaxPercentProcessorTime:real, ['MaxWorkingSet byte']:long, TotalBytes:long, TotalProcessorTime:timespan, TotalRows:real) with (folder = "Facts") 
-.create-merge table ConcurrentOperationAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, CounterName:string, Max:real, Min:real, Average:real) with (folder = "Facts") 
-.create-merge table GatewayNodeInfoRaw (clusterId:guid, clusterName:string, nodeId:guid, machine:string, cloudDatasourceRefresh:bool, contactInformation:string, customConnectors:bool, status:string, type:string, version:string, versionStatus:string, osName:string, osVersion:string, cores:long, logicalCores:long, memoryGb:real, logDate:datetime) with (folder = "Facts") 
-.create-or-alter function with (folder = "Parsers", skipvalidation = "true") parse_QueryStartReport_csv(T:(GatewayObjectId:guid,RequestId:guid,DataSource:dynamic,QueryTrackingId:guid,QueryExecutionStartTimeUTC:datetime,QueryType:string,QueryText:string,EvaluationContext:string)) {
+.create-merge table SystemCounterAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, CounterName:string, Max:real, Min:real, Average:real) with (folder = "Gateway/System") 
+.create-merge table QueryStartReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, QueryTrackingId:guid, QueryExecutionStartTimeUTC:datetime, OperationType:string, QueryText:string, Table:string, EvaluationContext:dynamic, ServiceName:string, CurrentActivityId:guid, ItemId:guid, QueryType:string, RootActivityId:guid, SKU:string, WorkspaceId:guid, HostContextType:string, ConnectionIds:string) with (folder = "Gateway/Reports") 
+.create-merge table QueryExecutionReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, QueryTrackingId:guid, QueryExecutionEndTimeUTC:datetime, QueryExecutionDuration_ms_:long, QueryType:string, DataReadingAndSerializationDuration_ms_:long, SpoolingDiskWritingDuration_ms_:long, SpoolingDiskReadingDuration_ms_:long, SpoolingTotalDataSize_byte_:long, DataProcessingEndTimeUTC:datetime, DataProcessingDuration_ms_:long, Success:string, ErrorMessage:string) with (folder = "Gateway/Reports") 
+.create-merge table OpenConnectionReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, OpenConnectionStartTimeUTC:datetime, OpenConnectionTrackingId:guid, ProviderName:string, OpenConnectionDuration_ms_:long, Success:string, ErrorMessage:string) with (folder = "Gateway/Reports") 
+.create-merge table QueryExecutionAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, DataSource:dynamic, Success:string, AverageQueryExecutionDuration_ms_:real, MaxQueryExecutionDuration_ms_:long, MinQueryExecutionDuration_ms_:long, QueryType:string, AverageDataProcessingDuration_ms_:real, MaxDataProcessingDuration_ms_:long, MinDataProcessingDuration_ms_:long, Count:long) with (folder = "Gateway/Reports") 
+.create-merge table QueryStreamingReport (GatewayObjectId:guid, RequestId:guid, DataSource:dynamic, QueryTrackingId:guid, StreamingStartTimeUTC:datetime, SpoolingDiskReadingDuration_ms_:long, StreamingDuration_ms_:long, Success:string, ErrorMessage:string) with (folder = "Gateway/Reports") 
+.create-merge table MashupEvaluationReport (GatewayObjectId:guid, QueryTrackingId:guid, ConnectionId:guid, DataSourceKinds:string, DataSourcePaths:string, EndTimeUTC:datetime, ['AverageCommit byte']:real, AverageIODataBytesPerSecond:real, AveragePercentProcessorTime:real, ['AverageWorkingSet byte']:real, ['MaxCommit byte']:long, MaxIODataBytesPerSecond:long, MaxPercentProcessorTime:real, ['MaxWorkingSet byte']:long, TotalBytes:long, TotalProcessorTime:timespan, TotalRows:real) with (folder = "Gateway/Reports") 
+.create-merge table ConcurrentOperationAggregationReport (GatewayObjectId:guid, AggregationStartTimeUTC:datetime, AggregationEndTimeUTC:datetime, CounterName:string, Max:real, Min:real, Average:real) with (folder = "Gateway/Reports") 
+.create-merge table GatewayNodeInfoRaw (clusterId:guid, clusterName:string, nodeId:guid, machine:string, cloudDatasourceRefresh:bool, contactInformation:string, customConnectors:bool, status:string, type:string, version:string, versionStatus:string, osName:string, osVersion:string, cores:long, logicalCores:long, memoryGb:real, logDate:datetime) with (folder = "Gateway/Raw") 
+.create-or-alter function with (folder = "Gateway/Parsers", skipvalidation = "true") parse_QueryStartReport_csv(T:(GatewayObjectId:guid,RequestId:guid,DataSource:dynamic,QueryTrackingId:guid,QueryExecutionStartTimeUTC:datetime,QueryType:string,QueryText:string,EvaluationContext:string)) {
       T
       | project GatewayObjectId,
             RequestId,
@@ -98,7 +98,7 @@
             ,HostContextType=["Host Context Type"]
             ,ConnectionIds=["Connection Ids"]
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from QueryStartReport", skipvalidation = "true") parse_QueryStartReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from QueryStartReport", skipvalidation = "true") parse_QueryStartReport() {
   ['GatewayReports-Raw']
     | where logType == "QueryStartReport"
     | project log
@@ -115,7 +115,7 @@
     )
     | invoke parse_QueryStartReport_csv()
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from QueryExecutionReport", skipvalidation = "true") parse_QueryExecutionReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from QueryExecutionReport", skipvalidation = "true") parse_QueryExecutionReport() {
   ['GatewayReports-Raw']
     | where logType == "QueryExecutionReport"
     | project log
@@ -153,7 +153,7 @@
     Success,
     ErrorMessage
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from OpenConnectionReport", skipvalidation = "true") parse_OpenConnectionReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from OpenConnectionReport", skipvalidation = "true") parse_OpenConnectionReport() {
   ['GatewayReports-Raw']
     | where logType == "OpenConnectionReport"
     | project log
@@ -179,7 +179,7 @@
     Success,
     ErrorMessage
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from QueryExecutionAggregationReport", skipvalidation = "true") parse_QueryExecutionAggregationReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from QueryExecutionAggregationReport", skipvalidation = "true") parse_QueryExecutionAggregationReport() {
   ['GatewayReports-Raw']
     | where logType == "QueryExecutionAggregationReport"
     | project log
@@ -213,7 +213,7 @@
       MinDataProcessingDuration_ms_,
       Count
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from QueryStreamingReport", skipvalidation = "true") parse_QueryStreamingReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from QueryStreamingReport", skipvalidation = "true") parse_QueryStreamingReport() {
   ['GatewayReports-Raw']
     | where logType == "QueryStreamingReport"
     | project log
@@ -239,7 +239,7 @@
       Success,
       ErrorMessage
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from MashupEvaluationReport", skipvalidation = "true") parse_MashupEvaluationReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from MashupEvaluationReport", skipvalidation = "true") parse_MashupEvaluationReport() {
   ['GatewayReports-Raw']
     | where logType == "MashupEvaluationReport"
     | project log
@@ -264,7 +264,7 @@
       TotalRows:real
     )
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from SystemCounterAggregationReport", skipvalidation = "true") parse_SystemCounterAggregationReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from SystemCounterAggregationReport", skipvalidation = "true") parse_SystemCounterAggregationReport() {
   ['GatewayReports-Raw']
     | where logType == "SystemCounterAggregationReport"
     | project log
@@ -279,7 +279,7 @@
       Average:real
     )
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from MashupEvaluationReport", skipvalidation = "true") parse_ConcurrentOperationAggregationReport() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from MashupEvaluationReport", skipvalidation = "true") parse_ConcurrentOperationAggregationReport() {
   ['GatewayReports-Raw']
     | where logType == "ConcurrentOperationAggregationReport"
     | project log
@@ -294,7 +294,7 @@
       Average:real
     )
 }
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from GatewayNodeInfo", skipvalidation = "true") parse_GatewayNodeInfoRaw() {
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from GatewayNodeInfo", skipvalidation = "true") parse_GatewayNodeInfoRaw() {
   ['GatewayReports-Raw']
     | where logType == "GatewayNodeInfo"
     | project log,logDate
@@ -355,8 +355,8 @@
 .alter table GatewayNodeInfoRaw policy caching hotdata = time(14.00:00:00) hotindex = time(14.00:00:00)
 .alter table GatewayNodeInfoRaw policy update "[{\"IsEnabled\":true,\"Source\":\"GatewayReports-Raw\",\"Query\":\"parse_GatewayNodeInfoRaw()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
 .alter table GatewayNodeInfoRaw policy partitioning "{\"PartitionKeys\":[{\"ColumnName\":\"clusterId\",\"Kind\":1,\"Properties\":{\"Function\":1,\"MaxPartitionCount\":128,\"Seed\":1,\"PartitionAssignmentMode\":1}},{\"ColumnName\":\"logDate\",\"Kind\":2,\"Properties\":{\"Reference\":\"1970-01-01T00:00:00\",\"RangeSize\":\"1.00:00:00\",\"OverrideCreationTime\":true}}],\"EffectiveDateTime\":\"2024-03-21T15:00:42.2624751Z\",\"MinRowCountPerOperation\":0,\"MaxRowCountPerOperation\":0,\"MaxOriginalSizePerOperation\":0}"
-.create-merge table CopyExecutionReport (GatewayObjectId:guid, ActivityId:guid, CopyExecutionStartTimeUTC:datetime, CompletionStatus:string, CopyExecutionDuration_ms:decimal, CopyWorkerCPUUtilizationPercentage:decimal, CopyWorkerMemoryUsage_byte:decimal) with (folder = "Facts") 
-.create-or-alter function with (folder = "UpdatePolicyFunctions", docstring = "Function to extract data from CopyExecutionReport", skipvalidation = "true") parse_CopyExecutionReport() {
+.create-merge table CopyExecutionReport (GatewayObjectId:guid, ActivityId:guid, CopyExecutionStartTimeUTC:datetime, CompletionStatus:string, CopyExecutionDuration_ms:decimal, CopyWorkerCPUUtilizationPercentage:decimal, CopyWorkerMemoryUsage_byte:decimal) with (folder = "Gateway/Reports") 
+.create-or-alter function with (folder = "Gateway/UpdatePolicyFunctions", docstring = "Function to extract data from CopyExecutionReport", skipvalidation = "true") parse_CopyExecutionReport() {
   ['GatewayReports-Raw']
     | where logType == "CopyExecutionReport"
     | project log
@@ -378,15 +378,15 @@
 .alter table CopyExecutionReport policy caching hotdata = time(14.00:00:00) hotindex = time(14.00:00:00)
 .alter table CopyExecutionReport policy update "[{\"IsEnabled\":true,\"Source\":\"GatewayReports-Raw\",\"Query\":\"parse_CopyExecutionReport()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
 .alter table CopyExecutionReport policy partitioning "{\"PartitionKeys\":[{\"ColumnName\":\"GatewayObjectId\",\"Kind\":1,\"Properties\":{\"Function\":1,\"MaxPartitionCount\":128,\"Seed\":1,\"PartitionAssignmentMode\":1}},{\"ColumnName\":\"CopyExecutionStartTimeUTC\",\"Kind\":2,\"Properties\":{\"Reference\":\"1970-01-01T00:00:00\",\"RangeSize\":\"1.00:00:00\",\"OverrideCreationTime\":true}}],\"EffectiveDateTime\":\"2024-03-21T15:00:42.2624751Z\",\"MinRowCountPerOperation\":0,\"MaxRowCountPerOperation\":0,\"MaxOriginalSizePerOperation\":0}"
-.create-or-alter materialized-view with (folder="GateInfo") GatewayNodeInfo on table GatewayNodeInfoRaw { GatewayNodeInfoRaw | summarize arg_max(logDate, clusterId,clusterName,machine,cloudDatasourceRefresh,contactInformation,customConnectors,status,type,version,versionStatus,osName,osVersion,cores,logicalCores,memoryGb) by nodeId }
-.create-or-alter materialized-view with (folder="GateInfo") GatewayNodeStatus on table GatewaysHeartbeat { GatewaysHeartbeat | project-rename nodeId = GatewayId, lastStatusDate = ServerTimestampUTC | summarize arg_max(lastStatusDate,FileVersion,Responding) by nodeId }
-.create-or-alter function with (folder = "Views", docstring = "Function to merge the GatewayNodeInfo and Heartbeat", skipvalidation = "true") GatewayNodeStatusWithInfo() {
+.create-or-alter materialized-view with (folder="Gateway/Information") GatewayNodeInfo on table GatewayNodeInfoRaw { GatewayNodeInfoRaw | summarize arg_max(logDate, clusterId,clusterName,machine,cloudDatasourceRefresh,contactInformation,customConnectors,status,type,version,versionStatus,osName,osVersion,cores,logicalCores,memoryGb) by nodeId }
+.create-or-alter materialized-view with (folder="Gateway/Information") GatewayNodeStatus on table GatewaysHeartbeat { GatewaysHeartbeat | project-rename nodeId = GatewayId, lastStatusDate = ServerTimestampUTC | summarize arg_max(lastStatusDate,FileVersion,Responding) by nodeId }
+.create-or-alter function with (folder = "Gateway/Functions", docstring = "Function to merge the GatewayNodeInfo and Heartbeat", skipvalidation = "true") GatewayNodeStatusWithInfo() {
     GatewayNodeInfo
     | join kind=fullouter GatewayNodeStatus on nodeId
     | extend Responding=tobool(iff(datetime_diff('minute',now(),lastStatusDate)>1 or isempty(lastStatusDate),false,true))
     | project nodeId,logDate,clusterId,clusterName,machine,cloudDatasourceRefresh,contactInformation,customConnectors,status,type,version,versionStatus,osName,osVersion,cores,logicalCores,memoryGb,lastStatusDate,Responding
 }
-.create-or-alter function with (folder = "Views", docstring = "Function to get Query Connections", skipvalidation = "true") QueryConnections(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
+.create-or-alter function with (folder = "Gateway/Functions", docstring = "Function to get Query Connections", skipvalidation = "true") QueryConnections(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
      let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
      let TimeToStart = datetime_add('hour', 24, DateSearch);
      let TimeToExecute = datetime_add('hour', 30, DateSearch);
@@ -402,7 +402,7 @@
     | extend DataSource=DataSource.kind, Path=DataSource.path
     | project QueryTrackingId, DataSource=tostring(DataSource), Path=tostring(Path)
  }
-.create-or-alter function with (folder = "Views", docstring = "Function to merge the Query Start and Execution", skipvalidation = "true") QueryExecutionUnified(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
+.create-or-alter function with (folder = "Gateway/Functions", docstring = "Function to merge the Query Start and Execution", skipvalidation = "true") QueryExecutionUnified(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
      let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
      let TimeToStart = datetime_add('hour', 24, DateSearch);
      let TimeToExecute = datetime_add('hour', 36, DateSearch);
@@ -459,7 +459,7 @@
         RequestId,
         QueryTrackingId
  }
- .create-or-alter function with (folder = "Views", docstring = "Function to get SystemCounters", skipvalidation = "true") SystemCounters(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
+ .create-or-alter function with (folder = "Gateway/Functions", docstring = "Function to get SystemCounters", skipvalidation = "true") SystemCounters(DateSearch: datetime, DaysBack: int, AllGateways: bool, Gateways: dynamic, AllClusters: bool, Clusters: dynamic) {
      let TimeFrom = datetime_add('day', -DaysBack, DateSearch);
      let TimeTo = datetime_add('hour', 24, DateSearch);
      let GatewaysToSeach = GatewayNodeInfo
