@@ -1,5 +1,4 @@
 .execute script <|
-.create-merge table GatewaystHeartbeat (GatewayId:guid, FileVersion:string, ServerTimestampUTC:datetime, Responding:bool, ProcessName:string, ProductVersion:string, StartTime:datetime) with (folder = "Gateway/System") 
 .create-merge table GatewaysHeartbeat (GatewayId:guid, FileVersion:string, ServerTimestampUTC:datetime, Responding:bool, ProcessName:string, ProductVersion:string, StartTime:datetime) with (folder = "Gateway/System") 
 .create-or-alter table GatewaysHeartbeat ingestion json mapping 'GatewaysHeartbeat_mapping'
 ```
