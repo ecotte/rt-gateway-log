@@ -1,0 +1,120 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Gateway Node Info",
+          "nodeLineageTag": "d1a67ead-1764-4134-bd7e-8e362d2a1488",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 0
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 98
+          },
+          "nodeIndex": "Period",
+          "nodeLineageTag": "6121945d-f230-4506-8cf7-b3e3af688cbe",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 333
+          },
+          "nodeIndex": "Execution Measures",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 237
+          },
+          "nodeIndex": "System Counters",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 772,
+            "y": 507
+          },
+          "nodeIndex": "Query Connections",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 398,
+            "y": 470
+          },
+          "nodeIndex": "Query Execution",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 309
+          },
+          "nodeIndex": "Param - Counters Measure",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

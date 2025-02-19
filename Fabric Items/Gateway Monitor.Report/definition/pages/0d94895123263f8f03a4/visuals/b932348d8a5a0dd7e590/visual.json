@@ -1,0 +1,785 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+  "name": "b932348d8a5a0dd7e590",
+  "position": {
+    "x": 572.862559771372,
+    "y": 399.56509591359395,
+    "z": 5000,
+    "height": 289.70104335470069,
+    "width": 683.38056502406823,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries"
+                }
+              },
+              "queryRef": "Execution Measures.# Queries",
+              "nativeQueryRef": "# Queries"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "ErrorMessage"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.ErrorMessage",
+              "nativeQueryRef": "ErrorMessage"
+            }
+          ],
+          "showAll": true
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0078D4'"
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F2F2F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#505050'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Queries"
+                                    }
+                                  },
+                                  "Property": "Success formatting"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#505050'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Queries"
+                                    }
+                                  },
+                                  "Property": "Success formatting"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "1D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#0085D4'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Gateway Queries.Success"
+          }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "# Queries (errors)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolHigh'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Execution Measures"
+                                      }
+                                    },
+                                    "Property": "# Queries (errors)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "Execution Measures"
+                                      }
+                                    },
+                                    "Property": "# Queries (errors)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "10000D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "# Queries (errors)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "QueryExecutionUnified.# Queries (errors)"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Queries.Success"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.# Queries (errors)"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "494.47488171918576D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.EventText"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.4137686428204D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "83D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.Hour1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.ActivityType"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.Hash"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "255D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.GatewayId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "259D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.ClientActivityId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "262D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.ActivityId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "259D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.HelperId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.RootActivityId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "612.8922092113529D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.ErrorMessage"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Errors'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1649b8ac742b4535df7e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Query Execution"
+              }
+            },
+            "Property": "ErrorMessage"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "q",
+              "Entity": "Query Execution",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "And": {
+                  "Left": {
+                    "Not": {
+                      "Expression": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "q"
+                                }
+                              },
+                              "Property": "ErrorMessage"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Right": {
+                    "Not": {
+                      "Expression": {
+                        "Comparison": {
+                          "ComparisonKind": 0,
+                          "Left": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "q"
+                                }
+                              },
+                              "Property": "ErrorMessage"
+                            }
+                          },
+                          "Right": {
+                            "Literal": {
+                              "Value": "''"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

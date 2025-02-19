@@ -1,0 +1,635 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+  "name": "eb00de7d9d1c6cb64aaa",
+  "position": {
+    "x": 572.38493723849376,
+    "y": 92.384937238493734,
+    "z": 1000,
+    "height": 280.50209205020923,
+    "width": 684.18410041841014,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "ClusterName"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.ClusterName",
+              "nativeQueryRef": "ClusterName",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "NodeName"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.NodeName",
+              "nativeQueryRef": "NodeName",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Jobs"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.# Requests",
+              "nativeQueryRef": "# Jobs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.# Queries",
+              "nativeQueryRef": "# Queries"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries (errors)"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.# Queries (errors)",
+              "nativeQueryRef": "# Errors",
+              "displayName": "# Errors"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries (Refresh)"
+                }
+              },
+              "queryRef": "Execution Measures.# Queries (Refresh)",
+              "nativeQueryRef": "# Refresh",
+              "displayName": "# Refresh"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "# Queries (DirectQuery)"
+                }
+              },
+              "queryRef": "Execution Measures.# Queries (DirectQuery)",
+              "nativeQueryRef": "# DQ",
+              "displayName": "# DQ"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Max. Query Duration (s)"
+                }
+              },
+              "queryRef": "Execution Measures.Max. Query Duration (s)",
+              "nativeQueryRef": "Max. (s)",
+              "displayName": "Max. (s)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Perc. 0.9 Query Duration (s)"
+                }
+              },
+              "queryRef": "Execution Measures.Perc. 0.75 Query Duration (s)",
+              "nativeQueryRef": "Perc. 0.9 Duration (s)",
+              "displayName": "Perc. 0.9 Duration (s)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Execution Measures"
+                  }
+                },
+                "Property": "# Jobs"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "QueryExecutionUnified.ClusterName"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "ClusterName"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "QueryExecutionUnified.NodeName"
+            ],
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "NodeName"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'edcotte-Gateway'"
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'edcotteVM1'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'edcotteVM2'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F2F2F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#505050'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Queries"
+                                    }
+                                  },
+                                  "Property": "Success formatting"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#505050'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Queries"
+                                    }
+                                  },
+                                  "Property": "Success formatting"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "1D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#0085D4'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Gateway Queries.Success"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0094D4'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Queries.Success"
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.87814207993151D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.NodeName"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148.92676197906252D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.ClusterName"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Jobs by Gateway Cluster'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportSectionbbe05bcdd43cb5131bc2'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

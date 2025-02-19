@@ -1,0 +1,780 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+  "name": "7ad885a11d8351c58f0b",
+  "position": {
+    "x": 26.628678941002551,
+    "y": 310.87434484612282,
+    "z": 0,
+    "height": 352.36554226582444,
+    "width": 513.376159118398,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Query Execution"
+                        }
+                      },
+                      "Property": "QueryExecutionStartTimeUTC"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "QueryExecutionUnified.QueryExecutionStartTimeUTC",
+              "nativeQueryRef": "Start (UTC)",
+              "displayName": "Start (UTC)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Query Execution"
+                        }
+                      },
+                      "Property": "QueryExecutionEndTimeUTC"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "QueryExecutionUnified.QueryExecutionEndTimeUTC",
+              "nativeQueryRef": "End (UTC)",
+              "displayName": "End (UTC)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "ServiceName"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.ServiceName",
+              "nativeQueryRef": "ServiceName"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Job Success"
+                }
+              },
+              "queryRef": "Execution Measures.Job Success",
+              "nativeQueryRef": "Success",
+              "displayName": "Success"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Execution Measures"
+                    }
+                  },
+                  "Property": "Duration (s)"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.Duration (s)",
+              "nativeQueryRef": "Duration (s)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Query Execution"
+                    }
+                  },
+                  "Property": "RootActivityId"
+                }
+              },
+              "queryRef": "QueryExecutionUnified.RootActivityId",
+              "nativeQueryRef": "RootActivityId"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Query Execution"
+                      }
+                    },
+                    "Property": "QueryExecutionStartTimeUTC"
+                  }
+                },
+                "Function": 3
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "494.47488171918576D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.EventText"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.4137686428204D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "83D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.Hour1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.ActivityType"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.Hash"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "255D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.GatewayId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "259D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.ClientActivityId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "262D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.ActivityId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "259D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Logs.HelperId"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.46788998910473D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.QueryExecutionStartTimeUTC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.RootActivityId"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0078D4'"
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Queries"
+                                    }
+                                  },
+                                  "Property": "Success formatting"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#505050'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 0,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Queries"
+                                    }
+                                  },
+                                  "Property": "Success formatting"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "1D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#0085D4'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Gateway Queries.Success"
+          }
+        },
+        {
+          "properties": {
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F2F2F2'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#505050'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'IconOnly'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Middle'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "Job Success"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'N'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "Job Success"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Y'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'SymbolHigh'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Execution Measures"
+                                  }
+                                },
+                                "Property": "Job Success"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'R'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'Circle25'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Execution Measures.Job Success"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gateway Queries.Success"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "QueryExecutionUnified.QueryExecutionStartTimeUTC"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Execution Measures.Job Success"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Jobs'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

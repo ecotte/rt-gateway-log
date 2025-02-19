@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+  "name": "27a98e1ac836d6e2f6be",
+  "position": {
+    "x": 24.827586206896552,
+    "y": 3.5467980295566504,
+    "z": 1000,
+    "height": 78.0295566502463,
+    "width": 349.35960591133005,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Fabric Gateway Monitor",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "16pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Job Detail",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
