@@ -35,7 +35,6 @@ if ((Read-Host "Install PowerShell Module DataGateway? Needed only for Lakehouse
 
 if ((Read-Host "Install PowerShell Module MicrosoftPowerBIMgmt? Needed only for GatewayInfo (Y/N)").ToUpper() -eq "Y") {
     Install-Module -Name MicrosoftPowerBIMgmt -Force
-    Install-Module -Name JoinModule -Force
 }
 
 Write-Host "*******************************************************************"

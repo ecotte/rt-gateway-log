@@ -2,7 +2,7 @@
 
 # Before begining to install and register a gateway, for connecting to the gateway service, you would need to use the # Connect-DataGatewayServiceAccount. More information documented in the help page of that cmdlet.
 
-#requires -Version 7 -Modules MicrosoftPowerBIMgmt, JoinModule
+#requires -Version 7 -Modules Az.Accounts
 
 param(
     [string]
@@ -42,40 +42,52 @@ else {
 
 try {
 
-    $secureClientSecret = $config.ServicePrincipal.SecretText | ConvertTo-SecureString
-    $servicePrincipal = New-Object PSCredential -ArgumentList $Config.ServicePrincipal.AppId, $secureClientSecret 
-    Connect-PowerBIServiceAccount -Environment 'Public' -ServicePrincipal -Credential $servicePrincipal -Tenant $Config.ServicePrincipal.TennatId
+    $secureClientSecret = $config.ServicePrincipal.SecretText  | ConvertTo-SecureString
+    $memberId = $config.GatewayId
+    $tenantId  = $config.ServicePrincipal.TennatId
+    $appId = $Config.ServicePrincipal.AppId
+    $servicePrincipal = New-Object PSCredential -ArgumentList $appId, $secureClientSecret
+    
 
-    $gateways = Invoke-PowerBIRestMethod -Method Get -Url "https://api.powerbi.com/v2.0/myorg/gatewayClusters" | ConvertFrom-Json
+    Connect-AzAccount -ServicePrincipal -Credential $servicePrincipal -TenantId $tenantId
+    Set-AzContext -Tenant $tenantId | Out-Null
+    $resourceUrl = "https://api.fabric.microsoft.com"
+    $authToken = (Get-AzAccessToken -ResourceUrl $resourceUrl).Token
+    $fabricHeaders = @{
+        'Content-Type'  = "application/json; charset=utf-8"
+        'Authorization' = "Bearer {0}" -f $authToken
+    }
 
-    $computerInfor = Get-ComputerInfo | 
-        Select-Object @{ Name = "machine"; Expression = { $_.CsName } },
-            @{ Name = "osName"; Expression = { $_.OsName } },
-            @{ Name = "osVersion"; Expression = { $_.OsVersion } },
-            @{ Name = "cores"; Expression = { $_.CsNumberOfProcessors } },
-            @{ Name = "logicalCores"; Expression = { $_.CsNumberOfLogicalProcessors } },
-            @{ Name = "memoryGb"; Expression = { $_.CsTotalPhysicalMemory / 1Gb } }
+    $gateways = (Invoke-WebRequest -Headers $fabricHeaders -Method Get -Uri "$resourceUrl/v1/gateways/").Content | ConvertFrom-Json
 
-    $gatewayObject = $gateways.value | 
-        Select-Object @{Name = "clusterId"; Expression = { $_.id } }, `
-            @{Name = "clusterName"; Expression = { $_.name } }, `
-            @{Name = "type"; Expression = { $_.type } }, `
-            @{Name = "cloudDatasourceRefresh"; Expression = { $_.options.CloudDatasourceRefresh } }, `
-            @{Name = "customConnectors"; Expression = { $_.options.CustomConnectors } }, `
-            @{Name = "memberGateways"; Expression = { $_.memberGateways | Select-Object * -ExcludeProperty clusterId, publicKey } } |
-        Select-Object * -ExpandProperty memberGateways -ExcludeProperty memberGateways |
-        Select-Object @{Name = "clusterId"; Expression = { $_.clusterId } }, `
-            @{Name = "clusterName"; Expression = { $_.clusterName } }, `
-            @{Name = "type"; Expression = { $_.type } }, `
-            @{Name = "cloudDatasourceRefresh"; Expression = { $_.cloudDatasourceRefresh } }, `
-            @{Name = "customConnectors"; Expression = { $_.customConnectors } }, `
-            @{Name = "version"; Expression = { $_.version } }, `
-            @{Name = "status"; Expression = { $_.status } }, `
-            @{Name = "versionStatus"; Expression = { $_.versionStatus } }, `
-            @{Name = "contactInformation"; Expression = { ($_.annotation | ConvertFrom-Json).gatewayContactInformation } }, `
-            @{Name = "machine"; Expression = { ($_.annotation | ConvertFrom-Json).gatewayMachine } }, `
-            @{Name = "nodeId"; Expression = { $_.id } } |
-        Join-Object -RightObject $computerInfor -On 'machine'
+    foreach ($gateway in $gateways.value) {
+        $member = ((Invoke-WebRequest -Headers $fabricHeaders -Method Get -Uri "$resourceUrl/v1/gateways/$($gateway.id)/members").Content | ConvertFrom-Json).value | Where-Object {$_.id -eq $memberId}
+        if ($member) 
+        {
+            break
+        }
+    }
+
+    $computerInfor = Get-ComputerInfo 
+
+    $gatewayObject = @{
+        clusterId = $gateway.id
+        clusterName = $gateway.displayName
+        nodeId = $member.id
+        machine = $member.displayName
+        cloudDatasourceRefresh = $gateway.allowCloudConnectionRefresh
+        contactInformation = ""
+        customConnectors = $gateway.allowCustomConnectors
+        status = "Installed"
+        type = $gateway.type
+        version = $member.version
+        versionStatus = ""
+        osName = $computerInfor.OsName
+        osVersion = $computerInfor.OsVersion
+        cores = $computerInfor.CsNumberOfProcessors
+        logicalCores = $computerInfor.CsNumberOfLogicalProcessors
+        memoryGb = ($computerInfor.CsTotalPhysicalMemory / 1Gb)
+    }
 
     $eventStreamConnection = ($config.EventHubs.ConnectionStrings | Where-Object { $_.Report -eq "Reports" }).EventHubConnectionString
 
